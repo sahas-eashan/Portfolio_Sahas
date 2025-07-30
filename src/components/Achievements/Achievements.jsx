@@ -54,13 +54,13 @@ const achievements = [
     title: "Finalist – Robofest (Micromouse)",
     description: "Finalist in the Robofest Micromouse autonomous robotics challenge.",
     year: "2024",
-    img: `${import.meta.env.BASE_URL}mouse.png`
+    img: `${import.meta.env.BASE_URL}mouse.jpg`
   },
   {
     title: "Finalist – Dextron (Fast Line Following)",
     description: "Dextron Fast Line Following finalist, demonstrating high-speed autonomous navigation.",
     year: "2024",
-    img: `${import.meta.env.BASE_URL}fast.png`
+    img: `${import.meta.env.BASE_URL}speed.jpg`
   },
   {
     title: "Finalist – AlgoExplore",

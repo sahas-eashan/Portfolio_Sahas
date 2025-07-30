@@ -2,7 +2,6 @@ import React from "react";
 import Navbar from "./Navbar";
 import Hero from "./Hero";
 import About from "./About";
-import Projects from "./Projects/Projects";
 import Skills from "./Skills";
 import Achievements from "./Achievements/Achievements";
 import Contact from "./Contact";
@@ -14,7 +13,6 @@ export default function Layout() {
       <Navbar />
       <Hero />
       <About />
-      <Projects />
       <Skills />
       <Achievements />
       <Contact />

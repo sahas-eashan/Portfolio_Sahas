@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 // Container and child animation for stagger
 const container = {
@@ -210,15 +211,19 @@ export default function Hero() {
         </motion.p>
 
         {/* CTA Button */}
-        <motion.a
-          href="#projects"
-          className="inline-block bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-6 py-3 rounded-full text-base font-semibold hover:scale-105 hover:shadow-xl transition-all duration-300 shadow-lg mb-6"
-          variants={child}
-          whileHover={{ scale: 1.08, background: "linear-gradient(90deg,#06b6d4,#a855f7,#06b6d4)" }}
-          whileTap={{ scale: 0.95 }}
+        <motion.div
+        className="inline-block"
+        variants={child}
+        whileHover={{ scale: 1.08, boxShadow: "0 8px 32px 0 rgba(6,182,212,0.3)" }}
+        whileTap={{ scale: 0.97 }}
         >
-          Explore My Work ↓
-        </motion.a>
+        <Link
+            to="/projects"
+            className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-6 py-3 rounded-full text-base font-semibold hover:scale-105 hover:shadow-xl transition-all duration-300 shadow-lg mb-6 block"
+        >
+            Explore My Projects ↓
+        </Link>
+        </motion.div>
 
         {/* Floating Skills Tags */}
         <motion.div

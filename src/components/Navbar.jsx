@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { Link } from "react-scroll";
+import { Link as ScrollLink } from "react-scroll";
+import { Link as RouterLink } from "react-router-dom"; // for React Router v6+
 import ThemeSwitcher from "./ThemeSwitcher";
 
 const navLinks = [
   { label: "Home", to: "home" },
   { label: "About", to: "about" },
-  { label: "Projects", to: "projects" },
+  { label: "Projects", to: "/projects", isRoute: true }, // use route for projects!
   { label: "Skills", to: "skills" },
   { label: "Achievements", to: "achievements" },
   { label: "Contact", to: "contact" },
@@ -20,43 +21,67 @@ export default function Navbar() {
         <span className="text-xl md:text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent select-none">
           SE
         </span>
+        {/* Desktop Navigation */}
         <div className="hidden md:flex space-x-7 items-center">
-          {navLinks.map((link) => (
-            <Link
-              key={link.to}
-              activeClass="text-cyan-400 border-b-2 border-cyan-400"
-              to={link.to}
-              spy={true}
-              smooth={true}
-              duration={600}
-              className="cursor-pointer capitalize text-white transition-all hover:text-cyan-400"
-            >
-              {link.label}
-            </Link>
-          ))}
+          {navLinks.map((link) =>
+            link.isRoute ? (
+              <RouterLink
+                key={link.to}
+                to={link.to}
+                className="cursor-pointer capitalize text-white transition-all hover:text-cyan-400"
+              >
+                {link.label}
+              </RouterLink>
+            ) : (
+              <ScrollLink
+                key={link.to}
+                activeClass="text-cyan-400 border-b-2 border-cyan-400"
+                to={link.to}
+                spy={true}
+                smooth={true}
+                duration={600}
+                className="cursor-pointer capitalize text-white transition-all hover:text-cyan-400"
+              >
+                {link.label}
+              </ScrollLink>
+            )
+          )}
           <ThemeSwitcher />
         </div>
+        {/* Mobile Menu Button */}
         <button
           className="md:hidden p-2 text-white"
           onClick={() => setMobileMenu((m) => !m)}
         >
           ☰
         </button>
+        {/* Mobile Menu Dropdown */}
         {mobileMenu && (
           <div className="md:hidden absolute top-16 left-0 w-full bg-black/80 py-6 flex flex-col items-center space-y-6">
-            {navLinks.map((link) => (
-              <Link
-                key={link.to}
-                to={link.to}
-                spy={true}
-                smooth={true}
-                duration={600}
-                onClick={() => setMobileMenu(false)}
-                className="cursor-pointer capitalize text-white text-lg"
-              >
-                {link.label}
-              </Link>
-            ))}
+            {navLinks.map((link) =>
+              link.isRoute ? (
+                <RouterLink
+                  key={link.to}
+                  to={link.to}
+                  onClick={() => setMobileMenu(false)}
+                  className="cursor-pointer capitalize text-white text-lg"
+                >
+                  {link.label}
+                </RouterLink>
+              ) : (
+                <ScrollLink
+                  key={link.to}
+                  to={link.to}
+                  spy={true}
+                  smooth={true}
+                  duration={600}
+                  onClick={() => setMobileMenu(false)}
+                  className="cursor-pointer capitalize text-white text-lg"
+                >
+                  {link.label}
+                </ScrollLink>
+              )
+            )}
             <ThemeSwitcher />
           </div>
         )}
