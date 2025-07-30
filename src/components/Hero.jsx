@@ -36,7 +36,6 @@ export default function Hero() {
             <rect width="100%" height="100%" fill="url(#circuit)" />
           </svg>
         </div>
-
         {/* Animated Floating Orbs */}
         <motion.div
           className="absolute -top-16 left-32 w-48 h-48 bg-cyan-400/20 rounded-full blur-3xl"
@@ -53,7 +52,6 @@ export default function Hero() {
           animate={{ y: [0, 30, 0], opacity: [0.16, 0.30, 0.16] }}
           transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
         />
-
         {/* Floating Tech Icons */}
         <motion.div
           className="absolute top-20 left-10 text-cyan-400 opacity-20"
@@ -210,19 +208,41 @@ export default function Hero() {
           Electronics & Telecommunications Engineering Student | Research Associate
         </motion.p>
 
-        {/* CTA Button */}
+        {/* CTA Buttons - Projects & Download CV */}
         <motion.div
-        className="inline-block"
-        variants={child}
-        whileHover={{ scale: 1.08, boxShadow: "0 8px 32px 0 rgba(6,182,212,0.3)" }}
-        whileTap={{ scale: 0.97 }}
+          className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-6"
+          variants={child}
         >
-        <Link
-            to="/projects"
-            className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-6 py-3 rounded-full text-base font-semibold hover:scale-105 hover:shadow-xl transition-all duration-300 shadow-lg mb-6 block"
-        >
-            Explore My Projects ↓
-        </Link>
+          {/* Explore Projects Button */}
+          <motion.div
+            className="inline-block"
+            whileHover={{ scale: 1.08, boxShadow: "0 8px 32px 0 rgba(6,182,212,0.3)" }}
+            whileTap={{ scale: 0.97 }}
+          >
+            <Link
+              to="/projects"
+              className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-6 py-3 rounded-full text-base font-semibold hover:scale-105 hover:shadow-xl transition-all duration-300 shadow-lg block"
+            >
+              Explore My Projects ↓
+            </Link>
+          </motion.div>
+          {/* Download CV Button */}
+          <motion.div
+            className="inline-block"
+            whileHover={{ scale: 1.08, boxShadow: "0 8px 32px 0 rgba(168,85,247,0.21)" }}
+            whileTap={{ scale: 0.97 }}
+          >
+            <a
+              href={`${import.meta.env.BASE_URL}cv (1).pdf`}
+              download="Sahas_Eashan_CV.pdf"
+              className="bg-gradient-to-r from-purple-500 to-cyan-500 text-white px-6 py-3 rounded-full text-base font-semibold hover:scale-105 hover:shadow-xl transition-all duration-300 shadow-lg block flex items-center gap-2"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg className="w-5 h-5 mr-1" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" /></svg>
+              Download CV
+            </a>
+          </motion.div>
         </motion.div>
 
         {/* Floating Skills Tags */}

@@ -972,7 +972,7 @@ Gallery and demo video below.
     },
     {
       type: "video",
-      src: "https://youtu.be/Mx4AK1pfUDk?si=SO05qTTNIylyZ-6N",
+      src: `${import.meta.env.BASE_URL}public/bio5.mp4`,
       alt: "Bioplastic Revolution – YouTube Demo"
     }
   ]
