@@ -1,21 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-// Helper for random float
 const rand = (a, b) => a + Math.random() * (b - a);
 
-// Glassy animated bubble SVG
 const GlassyBubble = ({
-  x0,
-  y0,
-  x1,
-  y1,
-  r,
-  duration,
-  delay,
-  opacity,
-  outline,
-  fill
+  x0, y0, x1, y1, r, duration, delay, opacity, outline, fill
 }) => (
   <motion.svg
     className="absolute pointer-events-none"
@@ -46,7 +35,6 @@ const GlassyBubble = ({
         <stop offset="100%" stopColor="transparent" stopOpacity="0" />
       </radialGradient>
     </defs>
-    {/* Bubble core */}
     <circle
       cx={r}
       cy={r}
@@ -56,7 +44,6 @@ const GlassyBubble = ({
       strokeWidth={outline}
       opacity={0.95}
     />
-    {/* Subtle shine highlight */}
     <ellipse
       cx={r * 1.25}
       cy={r * 0.82}
@@ -65,7 +52,6 @@ const GlassyBubble = ({
       fill="url(#shine)"
       opacity={0.22}
     />
-    {/* Bottom subtle highlight */}
     <ellipse
       cx={r * 0.95}
       cy={r * 1.28}
@@ -77,23 +63,17 @@ const GlassyBubble = ({
   </motion.svg>
 );
 
-// Generate array of bubble configs
 const genBubbles = (n, w, h) =>
   Array.from({ length: n }).map(() => {
     const r = rand(14, 75); // radius
     const x0 = rand(0, w - r * 2);
     const y0 = rand(0, h - r * 2);
-    // random direction and distance
     const x1 = x0 + rand(-120, 120);
     const y1 = y0 + rand(-160, 120);
     return {
-      x0,
-      y0,
-      x1,
-      y1,
-      r,
-      duration: rand(6, 13),
-      delay: rand(0, 5),
+      x0, y0, x1, y1, r,
+      duration: rand(3, 6), // shortened for fast loader
+      delay: rand(0, 1.3),
       opacity: rand(0.17, 0.29),
       outline: rand(1.2, 2.7),
       fill: true
@@ -111,25 +91,30 @@ const BubblesBackground = ({ bubbleCount = 24, width = 1600, height = 900 }) => 
   );
 };
 
-// Main loader
 export default function ModernLoader({ show, onComplete }) {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     if (show) {
+      const step = 4;         // % per tick
+      const intervalMs = 25;  // ms per tick, so (100/4*25)=2.5s
       const progressInterval = setInterval(() => {
         setProgress((prev) => {
           if (prev >= 100) {
             clearInterval(progressInterval);
-            setTimeout(() => onComplete && onComplete(), 800);
+            setTimeout(() => onComplete && onComplete(), 250);
             return 100;
           }
-          return prev + 2;
+          return prev + step;
         });
-      }, 100);
+      }, intervalMs);
       return () => clearInterval(progressInterval);
     }
   }, [show, onComplete]);
+
+  // --- Animation timing (much shorter for name, lines, etc.) ---
+  const fastAnim = { duration: 1.1, repeat: Infinity };  // <-- less than loader time
+  const fastAnimOnce = { duration: 0.7 };
 
   return (
     <AnimatePresence>
@@ -141,18 +126,17 @@ export default function ModernLoader({ show, onComplete }) {
           exit={{
             opacity: 0,
             scale: 1.07,
-            transition: { duration: 0.8, ease: "easeInOut" }
+            transition: { duration: 0.7, ease: "easeInOut" }
           }}
         >
-          {/* -- Realistic Glassy Bubbles Background -- */}
-          <BubblesBackground bubbleCount={28} width={window.innerWidth} height={window.innerHeight} />
+          {/* Glassy Bubbles */}
+          <BubblesBackground bubbleCount={22} width={window.innerWidth} height={window.innerHeight} />
 
-          {/* --- Central Loader & Progress Bar (as before) --- */}
+          {/* Loader core */}
           <div className="relative z-10 flex flex-col items-center">
-            <div className="relative mb-16">
-              {/* Outer Rotating Ring */}
+            <div className="relative mb-10">
               <motion.div
-                className="absolute inset-0 w-40 h-40 border-4 border-gradient-to-r from-cyan-400 via-purple-400 to-yellow-400 rounded-full"
+                className="absolute inset-0 w-32 h-32 border-4 border-gradient-to-r from-cyan-400 via-purple-400 to-yellow-400 rounded-full"
                 style={{
                   background:
                     "conic-gradient(from 0deg, #06b6d4, #a855f7, #eab308, #06b6d4)",
@@ -160,22 +144,20 @@ export default function ModernLoader({ show, onComplete }) {
                   padding: "4px",
                 }}
                 animate={{ rotate: 360 }}
-                transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                transition={{ duration: 2.5, repeat: Infinity, ease: "linear" }}
               >
                 <div className="w-full h-full bg-black rounded-full" />
               </motion.div>
-              {/* Middle Pulsing Ring */}
               <motion.div
-                className="absolute inset-4 w-32 h-32 border-2 border-cyan-400 rounded-full"
+                className="absolute inset-4 w-24 h-24 border-2 border-cyan-400 rounded-full"
                 animate={{
-                  scale: [1, 1.2, 1],
+                  scale: [1, 1.16, 1],
                   opacity: [0.5, 1, 0.5],
                 }}
-                transition={{ duration: 2, repeat: Infinity }}
+                transition={fastAnim}
               />
-              {/* Inner Morphing Shape */}
               <motion.div
-                className="absolute inset-8 w-24 h-24 bg-gradient-to-br from-cyan-400 via-purple-500 to-yellow-400 rounded-full"
+                className="absolute inset-8 w-16 h-16 bg-gradient-to-br from-cyan-400 via-purple-500 to-yellow-400 rounded-full"
                 animate={{
                   borderRadius: [
                     "50%",
@@ -187,37 +169,35 @@ export default function ModernLoader({ show, onComplete }) {
                   rotate: [0, 90, 180, 270, 360],
                   scale: [1, 0.8, 1.2, 0.9, 1],
                 }}
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
               />
             </div>
-            {/* Dynamic Progress Visualization */}
-            <div className="w-96 max-w-lg mb-12">
-              {/* Progress Bar */}
-              <div className="relative h-3 bg-gray-800 rounded-full overflow-hidden mb-6">
+            {/* Progress Bar */}
+            <div className="w-72 max-w-lg mb-8">
+              <div className="relative h-3 bg-gray-800 rounded-full overflow-hidden mb-4">
                 <motion.div
                   className="absolute left-0 top-0 h-full bg-gradient-to-r from-cyan-400 via-purple-500 to-yellow-400 rounded-full"
                   initial={{ width: "0%" }}
                   animate={{ width: `${progress}%` }}
-                  transition={{ duration: 0.3, ease: "easeOut" }}
+                  transition={{ duration: 0.25, ease: "easeOut" }}
                 />
                 <motion.div
-                  className="absolute top-0 h-full w-24 bg-gradient-to-r from-transparent via-white to-transparent opacity-50"
-                  animate={{ x: [-96, 400] }}
+                  className="absolute top-0 h-full w-16 bg-gradient-to-r from-transparent via-white to-transparent opacity-40"
+                  animate={{ x: [-64, 350] }}
                   transition={{
-                    duration: 2,
+                    duration: 1.5,
                     repeat: Infinity,
                     ease: "easeInOut",
                   }}
                 />
               </div>
-              {/* Progress Number */}
               <div className="text-center">
                 <motion.span
-                  className="text-4xl font-bold bg-gradient-to-r from-cyan-400 via-purple-400 to-yellow-400 bg-clip-text text-transparent"
+                  className="text-2xl font-bold bg-gradient-to-r from-cyan-400 via-purple-400 to-yellow-400 bg-clip-text text-transparent"
                   key={progress}
-                  initial={{ scale: 1.2, opacity: 0.8 }}
+                  initial={{ scale: 1.15, opacity: 0.8 }}
                   animate={{ scale: 1, opacity: 1 }}
-                  transition={{ duration: 0.2 }}
+                  transition={fastAnimOnce}
                 >
                   {progress}%
                 </motion.span>
@@ -226,24 +206,24 @@ export default function ModernLoader({ show, onComplete }) {
             {/* Name Animation */}
             <motion.div
               className="text-center"
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1, duration: 1.5 }}
+              transition={{ delay: 0.15, duration: 1 }}
             >
               <motion.h1
-                className="text-3xl md:text-4xl font-light text-gray-300 tracking-[0.5em] mb-4"
+                className="text-2xl md:text-3xl font-light text-gray-300 tracking-[0.32em] mb-2"
                 animate={{
-                  letterSpacing: ["0.5em", "0.8em", "0.5em"],
+                  letterSpacing: ["0.32em", "0.5em", "0.32em"],
                 }}
-                transition={{ duration: 3, repeat: Infinity }}
+                transition={fastAnim}
               >
                 SAHAS EASHAN
               </motion.h1>
               <motion.div
-                className="h-px bg-gradient-to-r from-transparent via-cyan-400 to-transparent w-96 mx-auto"
+                className="h-px bg-gradient-to-r from-transparent via-cyan-400 to-transparent w-72 mx-auto"
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: 1 }}
-                transition={{ delay: 2, duration: 2 }}
+                transition={{ delay: 0.2, duration: 1.3 }}
               />
             </motion.div>
           </div>

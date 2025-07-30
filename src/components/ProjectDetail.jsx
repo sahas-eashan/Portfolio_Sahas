@@ -7,16 +7,47 @@ import ReactMarkdown from "react-markdown";
 export default function ProjectDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const project = PROJECTS.find(p => p.id === id);
+  
+  // Add safety check for PROJECTS array and individual project objects
+  const project = PROJECTS?.find(p => p?.id === id);
+  
+  console.log("Route id param:", id);
+  console.log("Available IDs:", PROJECTS?.map(p => p?.id) || []);
+  console.log("Found project:", project);
+  
   const [showFullDetail, setShowFullDetail] = useState(false);
   const [selectedMedia, setSelectedMedia] = useState(0);
 
-  if (!project) {
+  // Enhanced error handling
+  if (!PROJECTS || PROJECTS.length === 0) {
     return (
-      <div className="text-white text-xl p-10">Project not found.</div>
+      <div className="text-white text-xl p-10 text-center">
+        <p>Projects data is not available.</p>
+        <button 
+          onClick={() => navigate('/projects')}
+          className="mt-4 px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-xl"
+        >
+          Back to Projects
+        </button>
+      </div>
     );
   }
 
+  if (!project) {
+    return (
+      <div className="text-white text-xl p-10 text-center">
+        <p>Project not found.</p>
+        <p className="text-gray-400 text-sm mt-2">Available projects: {PROJECTS.map(p => p.id).join(', ')}</p>
+        <button 
+          onClick={() => navigate('/projects')}
+          className="mt-4 px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-xl"
+        >
+          Back to Projects
+        </button>
+      </div>
+    );
+  }
+  
   // Extract sections from the detail markdown for read more functionality
   const fullDetail = project.detail || "";
   const previewLength = 800; // characters to show initially
@@ -58,6 +89,12 @@ export default function ProjectDetail() {
     if (match) return `https://www.youtube.com/embed/${match[1]}`;
     return url;
   }
+
+  // Handle image load errors
+  const handleImageError = (e, src) => {
+    console.error(`Failed to load image: ${src}`);
+    e.target.style.display = 'none';
+  };
 
   return (
     <section className="relative py-12 px-4 sm:px-6 min-h-screen bg-gradient-to-br from-transparent to-blue-950/30">
@@ -107,41 +144,43 @@ export default function ProjectDetail() {
             transition={{ delay: 0.2 }}
           >
             {/* Main Media Display */}
-<div
-  className="mx-auto flex items-center justify-center bg-gray-900 rounded-2xl overflow-hidden mb-4"
-  style={{
-    maxWidth: 650,        // Maximum width of the image/video
-    width: "100%",
-    minHeight: 360,        // Minimum height for loading
-    aspectRatio: "4/3",    // Good for both portrait/landscape
-  }}
->
-  {project.media[selectedMedia]?.type === "video" && isYouTube(project.media[selectedMedia].src) ? (
-    <iframe
-      src={toEmbedUrl(project.media[selectedMedia].src)}
-      title={project.media[selectedMedia].alt || project.title}
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowFullScreen
-      className="w-full h-full rounded-2xl"
-      style={{ aspectRatio: "4/3", minHeight: 300, maxHeight: 480 }}
-    />
-  ) : project.media[selectedMedia]?.type === "video" ? (
-    <video
-      src={project.media[selectedMedia].src}
-      controls
-      className="w-full h-full object-contain rounded-2xl"
-      style={{ aspectRatio: "4/3", minHeight: 300, maxHeight: 480 }}
-      poster={project.media[selectedMedia].poster}
-    />
-  ) : (
-    <img
-      src={project.media[selectedMedia]?.src}
-      alt={project.media[selectedMedia]?.alt || project.title}
-      className="w-full h-full object-contain rounded-2xl"
-      style={{ aspectRatio: "4/3", minHeight: 300, maxHeight: 480 }}
-    />
-  )}
-</div>
+            <div
+              className="mx-auto flex items-center justify-center bg-gray-900 rounded-2xl overflow-hidden mb-4"
+              style={{
+                maxWidth: 650,        // Maximum width of the image/video
+                width: "100%",
+                minHeight: 360,        // Minimum height for loading
+                aspectRatio: "4/3",    // Good for both portrait/landscape
+              }}
+            >
+              {project.media[selectedMedia]?.type === "video" && isYouTube(project.media[selectedMedia].src) ? (
+                <iframe
+                  src={toEmbedUrl(project.media[selectedMedia].src)}
+                  title={project.media[selectedMedia].alt || project.title}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="w-full h-full rounded-2xl"
+                  style={{ aspectRatio: "4/3", minHeight: 300, maxHeight: 480 }}
+                />
+              ) : project.media[selectedMedia]?.type === "video" ? (
+                <video
+                  src={project.media[selectedMedia].src}
+                  controls
+                  className="w-full h-full object-contain rounded-2xl"
+                  style={{ aspectRatio: "4/3", minHeight: 300, maxHeight: 480 }}
+                  poster={project.media[selectedMedia].poster}
+                  onError={(e) => console.error(`Failed to load video: ${project.media[selectedMedia].src}`)}
+                />
+              ) : (
+                <img
+                  src={project.media[selectedMedia]?.src}
+                  alt={project.media[selectedMedia]?.alt || project.title}
+                  className="w-full h-full object-contain rounded-2xl"
+                  style={{ aspectRatio: "4/3", minHeight: 300, maxHeight: 480 }}
+                  onError={(e) => handleImageError(e, project.media[selectedMedia]?.src)}
+                />
+              )}
+            </div>
 
             {/* Media Thumbnails */}
             {project.media.length > 1 && (
@@ -167,6 +206,7 @@ export default function ProjectDetail() {
                         src={item.src}
                         alt={item.alt || `Media ${idx + 1}`}
                         className="w-full h-full object-contain rounded-xl"
+                        onError={(e) => handleImageError(e, item.src)}
                       />
                     )}
                   </motion.button>
@@ -249,7 +289,7 @@ export default function ProjectDetail() {
                 <div className="flex justify-between items-center">
                   <span className="text-gray-400">Category:</span>
                   <span className="text-white font-medium">
-                    {PROJECT_CATEGORIES.find(cat => cat.id === project.category)?.label || 'General'}
+                    {PROJECT_CATEGORIES?.find(cat => cat.id === project.category)?.label || 'General'}
                   </span>
                 </div>
                 {project.github && (

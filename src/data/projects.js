@@ -420,7 +420,7 @@ The journey taught us invaluable lessons in embedded control, sensor integration
     },
     {
       type: "video",
-      src: `${import.meta.env.BASE_URL}public/mouse_demo.mp4`,
+      src: `${import.meta.env.BASE_URL}public/mouse.mp4`,
       alt: "MicroMouse SLIIT Robofest 2024 Demo"
     }
   ]
@@ -480,117 +480,502 @@ This experience strengthened my problem-solving, teamwork, and technical skills.
 ,
 
   // --- Computer Vision ---
-  {
-    id: "robogames-cv",
-    category: "cv",
-    title: "RoboGames Computer Vision System",
-    description: "Computer vision pipeline using Kinect for real-time color and object detection.",
-    detail: "Sophisticated computer vision pipeline using Kinect for color matching, HSV detection, robust under various lighting, autonomous manipulation.",
-    media: [
-      {
-        type: "image",
-        src: `${import.meta.env.BASE_URL}assets/robogames_cv.jpg`,
-        alt: "RoboGames Computer Vision System"
-      }
-    ]
-  },
+{
+  id: "robogames-cv",
+  category: "cv",
+  title: "RoboGames 2024 – Computer Vision System",
+  description: "Robust OpenCV-based real-time vision for autonomous robotics: color detection, object recognition, and sensor fusion.",
+  detail: `
+## RoboGames 2024 – Computer Vision & Perception
+
+The computer vision subsystem was a core enabler of our RoboGames 2024 robot’s autonomy. We engineered a real-time visual perception pipeline to identify, localize, and interact with task-specific objects using classical vision techniques—integral to high-stakes navigation and decision making.
+
+---
+
+### 🚦 **Vision System Features**
+
+- **Real-Time Color Detection:**  
+  OpenCV-based HSV color-space filtering to reliably isolate and detect target colors (walls, survivors, hazards) across changing lighting.
+- **Object Recognition & Localization:**  
+  Contour extraction and bounding box analysis to determine positions of colored objects—used for goal navigation, survivor detection, and interaction triggers.
+- **Adaptive Filtering:**  
+  Morphological operations and dynamic thresholding for noise reduction, maintaining accuracy under competitive arena lighting.
+- **Sensor Fusion:**  
+  Combined camera vision results with feedback from IMU, wheel encoders, and IR sensors to improve localization, orientation, and obstacle avoidance.
+- **Autonomous Integration:**  
+  Vision system outputs were directly linked to the robot’s finite state machine, activating behaviors like:
+  - Navigating to colored targets (walls)
+  - Identifying green “survivor” zones
+  - Avoiding mapped fire pits and obstacles
+
+---
+
+### 🛠️ **Technical Approach**
+
+- **Hardware:**  
+  RGB cameras (Kinect and onboard webcam) captured live streams for processing.
+- **Software:**  
+  OpenCV (Python/C++), running on an embedded Linux PC for frame-by-frame analysis.
+- **Algorithms:**  
+  HSV thresholding, binary masking, contour finding, and geometric feature extraction.
+- **Control Flow:**  
+  Vision outputs set state machine transitions and action priorities, making vision tightly coupled to autonomy.
+
+---
+
+### 🏆 **Competition Impact**
+
+- Enabled the robot to robustly **perceive, plan, and act** in real time, bridging the gap from simulated to real-world tasks.
+- Showcased resilience to lighting and environmental noise, contributing directly to our 2nd Runner-Up result at IESL RoboGames 2024.
+
+---
+
+`,
+  media: [
+    {
+      type: "image",
+      src: `${import.meta.env.BASE_URL}public/robo1.jpg`,
+      alt: "RoboGames 2024 Robot – Camera and Vision Setup"
+    },
+    {
+      type: "image",
+      src: `${import.meta.env.BASE_URL}public/robo7.png`,
+      alt: "Team Collaboration – RoboGames 2024"
+    },
+    {
+      type: "video",
+      src: "https://www.youtube.com/watch?v=kNw_bI8qk0k&embeds_referring_euri=https%3A%2F%2Fwww.pankajabalasooriya.me%2F&source_ve_path=OTY3MTQ",
+      alt: "RoboGames 2024 – Finals Demonstration Video"
+    }
+  ]
+},
+
 
   // --- AI ---
+{
+  id: "agentic-ai",
+  category: "ai",
+  title: "Agentic AI Practice",
+  description: "Modular, multi-agent system for web search, finance, and document Q&A—real-time reasoning and collaboration.",
+  detail: `
+## Agentic AI Practice – Multi-Agent LLM System
+
+Developed an advanced agentic AI platform using Ollama (Llama 3.1.8B) and PHI-playground to orchestrate multiple specialized agents for real-world information retrieval, reasoning, and synthesis.
+
+---
+
+### **Key Features**
+- **Collaborative Multi-Agent Architecture:**  
+  - Separate agents for web search (DuckDuckGo), finance (yfinance), and PDF document Q&A.
+  - Agents communicate, share information, and synthesize coordinated, comprehensive responses.
+- **Tool-Enabled Reasoning:**  
+  - Real-time web news, financial data, and semantic PDF search via custom function/tool-calling.
+  - Every agent provides explicit sources for trust and transparency.
+- **Supervisor Agent:**  
+  - Delegates tasks, manages information flow, and assembles final output using all sub-agent responses.
+- **PHI-Playground Integration:**  
+  - Fast prototyping, debugging, and visibility into agent actions, tool calls, and reasoning steps.
+
+---
+
+### **Technologies**
+- **LLM:** Ollama (Llama 3.1.8B)
+- **Framework:** PHI-playground (Python)
+- **APIs/Tools:** DuckDuckGo, yfinance, custom PDF QA
+- **Dockerized pgvector:** For storing vector embeddings and efficient document search
+
+---
+
+### **Impact**
+- Demonstrated modular, transparent, and extensible multi-agent architecture
+- Enabled trustworthy, real-time, and explainable AI answers across domains
+
+---
+
+*Open-source code and full details available on GitHub.*
+`,
+  github: "https://github.com/sahas-eashan/Agentic_AI_Practice",
+media: [
   {
-    id: "agentic-ai",
-    category: "ai",
-    title: "Agentic AI Practice",
-    description: "Multi-agent AI systems, web search/finance/PDF agents, advanced orchestration.",
-    detail: "AI agents for web search, finance, PDF analysis. Multi-agent collab, orchestration, NLP.",
-    github: "https://github.com/sahas-eashan/Agentic_AI_Practice",
-    media: [
-      {
-        type: "image",
-        src: `${import.meta.env.BASE_URL}assets/agentic_ai.jpg`,
-        alt: "Agentic AI Practice"
-      }
-    ]
-  },
+    type: "image",
+    src: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=600&q=80",
+    alt: "Abstract neural network data visualization"
+  }
+]
+},
+
 
   // --- Web ---
-  {
-    id: "bioplastics-website",
-    category: "web",
-    title: "Bioplastics Revolution Website",
-    description: "React-based site for Bioplastics project: modern UI, responsive, interactive.",
-    detail: "Showcases sustainable marine plastic solutions and seaweed-based biodegradable products. Responsive React + UI/UX.",
-    github: "https://github.com/sahas-eashan/WEB_bioplastics_revolution_",
-    media: [
-      {
-        type: "image",
-        src: `${import.meta.env.BASE_URL}assets/bioplastics_web.jpg`,
-        alt: "Bioplastics Revolution Website"
-      }
-    ]
-  },
+{
+  id: "bioplastics-website",
+  category: "web",
+  title: "Bioplastics Revolution Website",
+  description: "React-based site for Bioplastics project: modern UI, responsive, interactive.",
+  detail: `
+## Bioplastics Revolution – Website
+
+A professional, fully responsive website built for the Bioplastics Revolution project. Developed using the latest **React + Vite** stack, the site showcases sustainable marine plastic solutions and innovative, seaweed-based biodegradable products.
+
+---
+
+### 🌐 **Key Features**
+- **Modern UI/UX:** Intuitive layout with interactive components and rich visuals
+- **Responsive Design:** Seamless experience across mobile, tablet, and desktop devices
+- **Project Gallery:** High-quality images highlighting bioplastics products and environmental impact
+- **Contact Form:** Built-in secure form for inquiries and collaborations
+- **Performance Optimized:** Fast load times, clean codebase, and minimal bundle size thanks to Vite
+
+---
+
+### 🚀 **Deployment**
+- **Hosting:** Deployed for free using [GitHub Pages](https://pages.github.com/)
+- **CI/CD:** Automated build and deployment pipeline integrated with the GitHub repository
+- **Open Source:** Full source code and deployment instructions available on GitHub
+
+---
+
+*This project demonstrates modern web development practices and eco-friendly innovation, making sustainable solutions accessible to a wider audience.*
+
+  `,
+  github: "https://github.com/sahas-eashan/WEB_bioplastics_revolution_",
+  media: [
+    {
+      type: "image",
+      src: `${import.meta.env.BASE_URL}public/web1.png`,
+      alt: "Bioplastics Website Home Page"
+    },
+    {
+      type: "image",
+      src: `${import.meta.env.BASE_URL}public/web2.png`,
+      alt: "Project Gallery and Product Listings"
+    },
+    {
+      type: "image",
+      src: `${import.meta.env.BASE_URL}public/web3.png`,
+      alt: "Contact Form and Responsive Layout"
+    }
+  ]
+}
+,
 
   // --- IoT ---
-  {
-    id: "esp32-medibox",
-    category: "iot",
-    title: "ESP32 Medibox Simulation – EN2853",
-    description: "ESP32 Medibox: reminders, environmental monitoring, notifications.",
-    detail: "ESP32-based Medibox: medicine reminders, temp/humidity, alerts via display & push notification.",
-    github: "https://github.com/sahas-eashan/ESP32-Medibox-Project---EN2853",
-    media: [
-      {
-        type: "image",
-        src: `${import.meta.env.BASE_URL}assets/esp32_medibox.jpg`,
-        alt: "ESP32 Medibox Simulation"
-      }
-    ]
-  },
-  {
-    id: "shoe-cleaner",
-    category: "iot",
-    title: "Shoe Cleaning and Drying Machine",
-    description: "Arduino, custom PCB, fully-automated shoe cleaning/drying.",
-    detail: "Automated machine with custom PCB, Arduino, enclosure. Streamlined footwear maintenance.",
-    github: "https://github.com/sahas-eashan/Shoe-Cleaning-and-Drying-Machine--Engineering_Design_Project",
-    media: [
-      {
-        type: "image",
-        src: `${import.meta.env.BASE_URL}assets/shoe_cleaner.jpg`,
-        alt: "Shoe Cleaning and Drying Machine"
-      }
-    ]
-  },
+{
+  id: "esp32-medibox",
+  category: "iot",
+  title: "ESP32 Medibox Simulation – EN2853",
+  description: "ESP32 Medibox: reminders, environmental monitoring, notifications, and smart servo control—simulated in PlatformIO & Wokwi.",
+  detail: `
+## ESP32 Medibox – IoT Simulation (EN2853)
+
+A full-featured smart medicine box developed on ESP32 and **simulated with PlatformIO and Wokwi**. Designed for the EN2853 Embedded Systems course, the project demonstrates practical IoT integration for healthcare, environmental monitoring, and user interaction.
+
+---
+
+### 💊 **Key Features**
+
+- **Medicine Reminders:**  
+  Configurable alarms with on-device controls (OLED display, buttons, buzzer, LEDs) for scheduled medication alerts.
+
+- **Environmental Monitoring:**  
+  Real-time temperature and humidity readings (DHT22), with automatic alerts for abnormal ranges.
+
+- **Light Intensity Management:**  
+  LDR-based ambient light detection with servo-controlled shade; automated via MQTT-configurable sampling intervals and thresholds.
+
+- **Smart Controls & Notifications:**  
+  - User menu to set timezone, alarms, snooze, or cancel.
+  - Push notifications and data reporting via MQTT.
+
+- **OLED UI:**  
+  Intuitive menu navigation and live status display.
+
+---
+
+### 🛠️ **Tech Stack**
+
+- **ESP32**, PlatformIO (C++)
+- **Wokwi**: Cloud-based simulation for embedded prototyping
+- **Adafruit SSD1306 OLED, DHT22, LDR, Servo**
+- **WiFi & MQTT** for real-time data and control
+
+---
+
+### ⚙️ **Simulation Only**
+
+This project is **fully simulated** (not on physical hardware), leveraging [Wokwi](https://wokwi.com/) for circuit emulation and [PlatformIO](https://platformio.org/) for code development and testing.  
+All features—timers, alarms, environmental monitoring, servo control, and network communication—are demonstrated in a safe, reproducible simulated environment.
+
+---
+
+### 📸 **Project Media**
+
+- OLED display menu and alarm demo
+- Simulation of servo/LEDs in Wokwi
+- MQTT data reporting
+
+---
+
+  `,
+  github: "https://github.com/sahas-eashan/ESP32-Medibox-Project---EN2853",
+  media: [
+    {
+      type: "image",
+      src: `${import.meta.env.BASE_URL}public/medi3.png`,
+      alt: "ESP32 Medibox Simulation OLED Menu"
+    },
+    {
+      type: "video",
+      src: `${import.meta.env.BASE_URL}public/medi1.mp4`,
+      alt: "Medibox OLED Display and Alarm Demo"
+    },
+    {
+      type: "video",
+      src: `${import.meta.env.BASE_URL}public/medi2.mp4`,
+      alt: "Wokwi Servo, LED, and MQTT Simulation"
+    }
+  ]
+}
+,
+{
+  id: "shoe-cleaning-machine",
+  category: "iot",
+  title: "Shoe Cleaning and Drying Machine (EN1190)",
+  description: "A fully functional, automated shoe cleaning and drying system with custom enclosure, PCB, and 3D-printed parts.",
+  detail: `
+## Shoe Cleaning and Drying Machine – EN1190
+
+Designed and built for the EN1190 Engineering Design Project, this machine automates both the cleaning and drying of shoes in a single, user-friendly device.
+
+---
+
+### **Key Features**
+
+- **Automated Shoe Cleaning & Drying:**  
+  Place your shoes, select a mode, and the machine handles cleaning followed by efficient air-drying.
+- **Custom Enclosure:**  
+  Durable, compact housing with easily accessible controls.
+- **PCB and Electronics:**  
+  Fully custom-designed PCB for all system control and user interface.
+- **3D-Printed Parts:**  
+  Precision-fitted mechanical parts for shoe holders and cleaning modules.
+- **Efficient Air Circulation:**  
+  Integrated fan system for rapid, thorough drying.
+
+---
+
+### 🖼️ **Project Gallery**
+
+- **Enclosure:** Assembled and open view.
+- **PCB:** Custom electronics for automation.
+- **3D-Printed Components:** Shoe holders and cleaning tools.
+- **Enclosure CAD:** Full mechanical design files included.
+
+---
+
+### 📄 **Documentation & Files**
+
+- Full project documentation and CAD files are available in the repository.
+- Includes hardware schematics, firmware, and all 3D/2D files.
+
+---
+
+### 👥 **Team Members**
+
+- Ravishan BBN
+- Eashan SGS
+- Wickramasinghe SD
+- Manawadu MD
+
+---
+  `,
+  github: "https://github.com/sahas-eashan/shoe-cleaning-drying-machine", // Replace with your real repo if needed
+  media: [
+    {
+      type: "image",
+      src: `${import.meta.env.BASE_URL}public/shoe1.jpg`,
+      alt: "Shoe Cleaning Machine – Enclosure Open View"
+    },
+    {
+      type: "image",
+      src: `${import.meta.env.BASE_URL}public/shoe2.jpg`,
+      alt: "Shoe Cleaning Machine – PCB and Electronics"
+    },
+    {
+      type: "image",
+      src: `${import.meta.env.BASE_URL}public/shoe3.jpg`,
+      alt: "Shoe Cleaning Machine – 3D Printed Components"
+    },
+    {
+      type: "image",
+      src: `${import.meta.env.BASE_URL}public/shoe4.jpg`,
+      alt: "Shoe Cleaning Machine – CAD Enclosure Design"
+    },
+    {
+      type: "video",
+      src: `${import.meta.env.BASE_URL}public/shoe5.mp4`,
+      alt: "Shoe Cleaning and Drying Machine – Demo Video"
+    }
+  ]
+}
+,
 
   // --- Hardware ---
-  {
-    id: "linear-psu",
-    category: "hardware",
-    title: "Linear Power Supply Design",
-    description: "10V 10A linear PSU: advanced voltage regulation, dual-layer PCB.",
-    detail: "Designed a precision 10V/10A PSU with current limiting, protection, simulation, thermal management.",
-    media: [
-      {
-        type: "image",
-        src: `${import.meta.env.BASE_URL}assets/psu.jpg`,
-        alt: "Linear Power Supply Design"
-      }
-    ]
-  },
+{
+  id: "linear-psu",
+  category: "hardware",
+  title: "Linear Power Supply Design",
+  description: "10V 10A linear PSU: advanced voltage regulation, dual-layer PCB, full protection suite.",
+  detail: `
+## Linear Power Supply Design – 10V, 10A Precision Lab Supply
+
+A comprehensive linear power supply designed and built for EN2090 Laboratory Practice, meeting rigorous specs for stable 10V/10A output. The project involved complete analog circuit design, simulation, custom PCB, thermal engineering, and safety features.
+
+---
+
+### **Core Features**
+
+- **Stable 10V/10A Output:** Drives 100W loads with high precision, low ripple, and excellent transient response.
+- **Analog Regulation:** TIP142G Darlington transistor with 1N4738A zener and potentiometer for fine voltage adjustment.
+- **Current Limiting:** Automatic protection to prevent output current from exceeding 10A, ensuring safety for both load and supply.
+- **Complete Protection Suite:**
+  - Overload/short-circuit protection via high-power resistors and 12A fast-blow fuse.
+  - Advanced thermal management with heat sinks and 12V DC fan.
+- **Double-layer PCB:** Robust copper traces sized to IPC-2221 for 10A continuous current, with careful thermal and safety layout.
+- **Custom Enclosure:** SolidWorks-designed case with optimized airflow, minimalistic interface, and secure AC/DC separation.
+- **Simulation & Testing:** Multisim simulations, oscilloscope testing, and data analysis for ripple, load regulation, and efficiency.
+
+---
+
+### **Technical Highlights**
+
+- **Rectification:** KBPC3510 bridge rectifier, handles >35A, with smoothing by three 12,000μF capacitors (total 36,000μF).
+- **Voltage Regulation:** Potentiometer-adjustable, with zener-based feedback and high-power pass element.
+- **Current Sensing:** Parallel shunt resistors (0.22Ω) and 2N5551 transistor for responsive limiting.
+- **Thermal Design:** Heat sinks on power devices, fan cooling, and vented enclosure for safe operation at full load.
+- **Load & Efficiency Data:** Oscilloscope-based validation showed ripple below 20mV and output voltage within ±0.2V of setpoint under varying load.
+
+---
+
+`,
+  media: [
+    {
+      type: "image",
+      src: `${import.meta.env.BASE_URL}public/ana1.png`,
+      alt: "Linear Power Supply – Final Product"
+    },
+    {
+      type: "image",
+      src: `${import.meta.env.BASE_URL}public/ana2.jpg`,
+      alt: "PCB Layout – High Current Design"
+    },
+    {
+      type: "image",
+      src: `${import.meta.env.BASE_URL}public/ana3.jpg`,
+      alt: "Enclosure – Front View"
+    },
+    {
+      type: "image",
+      src: `${import.meta.env.BASE_URL}public/ana4.jpg`,
+      alt: "Enclosure – Side View"
+    }
+
+  ]
+}
+,
 
   // --- Sustainability ---
-  {
-    id: "bioplastic-revo",
-    category: "sustain",
-    title: "Bioplastic Revolution – Ocean's Gift",
-    description: "Biodegradable cling films and bags from Sri Lankan seaweed.",
-    detail: "Initiative to combat marine plastic pollution with innovative bioplastics, seaweed farming, marine pollution tracking.",
-    github: "https://github.com/sahas-eashan/Bioplastic-Revolution",
-    media: [
-      {
-        type: "image",
-        src: `${import.meta.env.BASE_URL}assets/bioplastics.jpg`,
-        alt: "Bioplastic Revolution – Ocean's Gift"
-      }
-    ]
-  }
+{
+  id: "bioplastic-revo",
+  category: "sustain",
+  title: "Bioplastic Revolution – Ocean's Gift",
+  description: "Biodegradable cling films and bags from Sri Lankan seaweed. Eco-innovation against marine plastic pollution.",
+  detail: `
+## PlastiSea – Seaweed-Based Bioplastics to Combat Plastic Pollution
+
+**Finalist at PLEASE Hack 2025 | "Best Environment Project" Award, Tyumen Ideathon**
+
+---
+
+### 🌊 Project Overview
+
+PlastiSea is a pioneering eco-innovation tackling Sri Lanka’s plastic crisis by developing 100% biodegradable, non-toxic bioplastics from locally sourced seaweed. These new-age materials—covering straws, bags, and cling films—are designed to fully replace single-use plastics, being safe for wildlife and compliant with Sri Lankan eco-bans.
+
+Our vision extends beyond material science: we’ve integrated a smart digital platform to track seaweed sourcing, production, and environmental impact, delivering true transparency and quality assurance **from sea to shelf**.
+
+---
+
+### **Key Features**
+
+- **Made from renewable seaweed** – Lower carbon and energy footprint than petro-plastics.
+- **Supports coastal communities** – Empowers local farmers through new economic opportunities in sustainable aquaculture.
+- **Truly biodegradable** – Safe for marine life, dissolves naturally, and complies with eco-regulations.
+- **Smart monitoring platform** – Tracks every step from seaweed harvest to product delivery, enabling environmental stewardship.
+- **Scalable impact** – Model deployable across coastal nations for a plastic-free future.
+
+---
+
+### **Achievements**
+
+- 🏆 **Finalists** – PLEASE Hack 2025, South Asia (Plastic Free Rivers & Seas for South Asia Project)
+- 🌱 **Best Environment Project** – Tyumen Ideathon, Tyumen State University, Russia
+
+---
+
+### **Team Bioplastic Revolution 🇱🇰**
+
+- Sahas Eshan
+- Demitha Manawadu
+- Banuka Liyanage
+- Ridmini Hasari
+- Benuri Edirisinghe
+
+**Mentors:**  
+Prof. Jagath Premachandra  
+Roshan Salinda Narasinghage
+
+---
+
+### **More**
+
+- [GitHub Project Repository](https://github.com/sahas-eashan/Bioplastic-Revolution)
+- [Website Source Code](https://github.com/sahas-eashan/Bioplastic-Revolution_web)
+- [YouTube Demo](https://youtu.be/Mx4AK1pfUDk?si=KuaUEP0_82QkifbX)
+
+---
+
+### **Media**
+
+Gallery and demo video below.
+
+`,
+  github: "https://github.com/sahas-eashan/Bioplastic-Revolution",
+  media: [
+    {
+      type: "image",
+      src: `${import.meta.env.BASE_URL}public/bio1.jpg`,
+      alt: "Bioplastic Revolution – Ocean's Gift – Product"
+    },
+    {
+      type: "image",
+      src: `${import.meta.env.BASE_URL}public/bio2.jpg`,
+      alt: "Seaweed Harvesting for Bioplastic"
+    },
+    {
+      type: "image",
+      src: `${import.meta.env.BASE_URL}public/bio3.jpeg`,
+      alt: "Biodegradable Straws and Bags"
+    },
+    {
+      type: "image",
+      src: `${import.meta.env.BASE_URL}public/bio4.jpg`,
+      alt: "Community Engagement with Seaweed Farmers"
+    },
+    {
+      type: "video",
+      src: "https://youtu.be/Mx4AK1pfUDk?si=SO05qTTNIylyZ-6N",
+      alt: "Bioplastic Revolution – YouTube Demo"
+    }
+  ]
+}
+
 ];

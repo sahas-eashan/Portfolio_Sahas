@@ -8,10 +8,10 @@ export default function Footer() {
         <a href="https://github.com/sahas-eashan" target="_blank" rel="noopener noreferrer">
           <Github className="w-6 h-6 hover:text-cyan-400" />
         </a>
-        <a href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer">
+        <a href="https://linkedin.com/in/sahas-eashan-55b35b29a" target="_blank" rel="noopener noreferrer">
           <Linkedin className="w-6 h-6 hover:text-cyan-400" />
         </a>
-        <a href="mailto:sahas.eashan@example.com">
+        <a href="mailto:sahaseashangalle@gmail.com">
           <Mail className="w-6 h-6 hover:text-cyan-400" />
         </a>
       </div>
