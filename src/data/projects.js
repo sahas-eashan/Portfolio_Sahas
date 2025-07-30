@@ -136,32 +136,32 @@ This project demonstrates mastery of:
   media: [
     {
       type: "image",
-      src: `${import.meta.env.BASE_URL}public/omni1.jpg`,
+      src: `${import.meta.env.BASE_URL}omni1.jpg`,
       alt: "Bluetooth Joystick Web Controller - Real-time Robot Control Interface"
     },
     {
       type: "image",
-      src: `${import.meta.env.BASE_URL}public/omni3.jpg`,
+      src: `${import.meta.env.BASE_URL}omni3.jpg`,
       alt: "Bluetooth Joystick Web Controller - Real-time Robot Control Interface"
     },
     {
       type: "image",
-      src: `${import.meta.env.BASE_URL}public/omni2.PNG`,
+      src: `${import.meta.env.BASE_URL}omni2.PNG`,
       alt: "Bluetooth Joystick Web Controller - Real-time Robot Control Interface"
     },
     {
       type: "image",
-      src: `${import.meta.env.BASE_URL}public/omni4.jpg`,
+      src: `${import.meta.env.BASE_URL}omni4.jpg`,
       alt: "Bluetooth Joystick Web Controller - Real-time Robot Control Interface"
     },
         {
       type: "image",
-      src: `${import.meta.env.BASE_URL}public/omniweb.jpg`,
+      src: `${import.meta.env.BASE_URL}omniweb.jpg`,
       alt: "Bluetooth Joystick Web Controller - Real-time Robot Control Interface"
     },
     {
       type: "video",
-      src: `${import.meta.env.BASE_URL}public/omni_vid.mp4`,
+      src: `${import.meta.env.BASE_URL}omni_vid.mp4`,
       alt: "Omni-Directional Robot Live Demonstration - Navigation and Control Systems"
     }
   ]
