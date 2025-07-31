@@ -144,11 +144,7 @@ This project demonstrates mastery of:
       src: `${import.meta.env.BASE_URL}omni3.jpg`,
       alt: "Bluetooth Joystick Web Controller - Real-time Robot Control Interface"
     },
-    {
-      type: "image",
-      src: `${import.meta.env.BASE_URL}omni2.PNG`,
-      alt: "Bluetooth Joystick Web Controller - Real-time Robot Control Interface"
-    },
+,
     {
       type: "image",
       src: `${import.meta.env.BASE_URL}omni4.jpg`,
