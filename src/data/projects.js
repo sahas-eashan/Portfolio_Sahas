@@ -411,7 +411,7 @@ The journey taught us invaluable lessons in embedded control, sensor integration
   media: [
     {
       type: "image",
-      src: `${import.meta.env.BASE_URL} mouse.jpg`,  // <-- Your mouse mascot here
+      src: `${import.meta.env.BASE_URL}mouse.jpg`,  // <-- Your mouse mascot here
       alt: "MicroMouse Mascot"
     },
     {
@@ -530,12 +530,12 @@ The computer vision subsystem was a core enabler of our RoboGames 2024 robot’s
   media: [
     {
       type: "image",
-      src: `${import.meta.env.BASE_URL} robo1.jpg`,
+      src: `${import.meta.env.BASE_URL}robo1.jpg`,
       alt: "RoboGames 2024 Robot – Camera and Vision Setup"
     },
     {
       type: "image",
-      src: `${import.meta.env.BASE_URL} robo7.png`,
+      src: `${import.meta.env.BASE_URL}robo7.png`,
       alt: "Team Collaboration – RoboGames 2024"
     },
     {
@@ -647,7 +647,7 @@ A professional, fully responsive website built for the Bioplastics Revolution pr
     },
     {
       type: "image",
-      src: `${import.meta.env.BASE_URL} web3.png`,
+      src: `${import.meta.env.BASE_URL}web3.png`,
       alt: "Contact Form and Responsive Layout"
     }
   ]
@@ -721,7 +721,7 @@ All features—timers, alarms, environmental monitoring, servo control, and netw
     },
     {
       type: "video",
-      src: `${import.meta.env.BASE_URL} medi1.mp4`,
+      src: `${import.meta.env.BASE_URL}medi1.mp4`,
       alt: "Medibox OLED Display and Alarm Demo"
     },
     {
@@ -793,7 +793,7 @@ Designed and built for the EN1190 Engineering Design Project, this machine autom
     },
     {
       type: "image",
-      src: `${import.meta.env.BASE_URL} shoe2.jpg`,
+      src: `${import.meta.env.BASE_URL}shoe2.jpg`,
       alt: "Shoe Cleaning Machine – PCB and Electronics"
     },
     {
@@ -861,12 +861,12 @@ A comprehensive linear power supply designed and built for EN2090 Laboratory Pra
     },
     {
       type: "image",
-      src: `${import.meta.env.BASE_URL} ana2.jpg`,
+      src: `${import.meta.env.BASE_URL}ana2.jpg`,
       alt: "PCB Layout – High Current Design"
     },
     {
       type: "image",
-      src: `${import.meta.env.BASE_URL} ana3.jpg`,
+      src: `${import.meta.env.BASE_URL}ana3.jpg`,
       alt: "Enclosure – Front View"
     },
     {
