@@ -229,42 +229,42 @@ Photos from the IESL Robogames, workshops, and the final robot setup.
   media: [
   {
     type: "image",
-    src: `${import.meta.env.BASE_URL}public/robo1.jpg`,
+    src: `${import.meta.env.BASE_URL}robo1.jpg`,
     alt: "RoboGames Team and Robot - 1"
   },
   {
     type: "image",
-    src: `${import.meta.env.BASE_URL}public/robo2.jpg`,
+    src: `${import.meta.env.BASE_URL}robo2.jpg`,
     alt: "RoboGames Team and Robot - 2"
   },
   {
     type: "image",
-    src: `${import.meta.env.BASE_URL}public/robo3.jpg`,
+    src: `${import.meta.env.BASE_URL}robo3.jpg`,
     alt: "RoboGames Workshop/Session"
   },
   {
     type: "image",
-    src: `${import.meta.env.BASE_URL}public/robo4.jpg`,
+    src: `${import.meta.env.BASE_URL}robo4.jpg`,
     alt: "Maze Completion - E-puck Simulation"
   },
   {
     type: "image",
-    src: `${import.meta.env.BASE_URL}public/robo5.jpg`,
+    src: `${import.meta.env.BASE_URL}robo5.jpg`,
     alt: "Final Round Preparation"
   },
   {
     type: "image",
-    src: `${import.meta.env.BASE_URL}public/robo6.jpg`,
+    src: `${import.meta.env.BASE_URL} robo6.jpg`,
     alt: "Kobuki Robot in Action"
   },
   {
     type: "image",
-    src: `${import.meta.env.BASE_URL}public/robo7.png`,
+    src: `${import.meta.env.BASE_URL}robo7.png`,
     alt: "Team Collaboration at RoboGames"
   },
   {
     type: "image",
-    src: `${import.meta.env.BASE_URL}public/robo8.jpg`,
+    src: `${import.meta.env.BASE_URL} robo8.jpg`,
     alt: "RoboGames - Award Ceremony"
   },
   // YouTube video link as external resource (embed if supported, or provide as external link)
@@ -344,22 +344,22 @@ Below are selected images of the robot, mechanisms, and competition action.
 media: [
   {
     type: "image",
-    src: `${import.meta.env.BASE_URL}public/robotic1.jpg`,
+    src: `${import.meta.env.BASE_URL}robotic1.jpg`,
     alt: "Robotic Design Project - Overview"
   },
   {
     type: "image",
-    src: `${import.meta.env.BASE_URL}public/robotic2.jpg`,
+    src: `${import.meta.env.BASE_URL} robotic2.jpg`,
     alt: "Robotic Design Project - Closeup"
   },
   {
     type: "image",
-    src: `${import.meta.env.BASE_URL}public/robotic3.jpg`,
+    src: `${import.meta.env.BASE_URL}robotic3.jpg`,
     alt: "Robotic Design Project - Task Execution"
   },
   {
     type: "video",
-    src: `${import.meta.env.BASE_URL}public/robotic_demo.mp4`,
+    src: `${import.meta.env.BASE_URL}robotic_demo.mp4`,
     alt: "Robotic Design Project - Competition Demo"
   }
 ]
@@ -415,12 +415,12 @@ The journey taught us invaluable lessons in embedded control, sensor integration
   media: [
     {
       type: "image",
-      src: `${import.meta.env.BASE_URL}public/mouse.jpg`,  // <-- Your mouse mascot here
+      src: `${import.meta.env.BASE_URL} mouse.jpg`,  // <-- Your mouse mascot here
       alt: "MicroMouse Mascot"
     },
     {
       type: "video",
-      src: `${import.meta.env.BASE_URL}public/mouse.mp4`,
+      src: `${import.meta.env.BASE_URL}mouse.mp4`,
       alt: "MicroMouse SLIIT Robofest 2024 Demo"
     }
   ]
@@ -457,22 +457,22 @@ This experience strengthened my problem-solving, teamwork, and technical skills.
   media: [
     {
       type: "image",
-      src: `${import.meta.env.BASE_URL}public/speed.jpg`,
+      src: `${import.meta.env.BASE_URL}speed.jpg`,
       alt: "FastLine Follower - Competition Ready"
     },
     {
       type: "image",
-      src: `${import.meta.env.BASE_URL}public/speed2.jpg`,
+      src: `${import.meta.env.BASE_URL}speed2.jpg`,
       alt: "FastLine Follower - Team Collaboration"
     },
     {
       type: "image",
-      src: `${import.meta.env.BASE_URL}public/speed3.jpg`,
+      src: `${import.meta.env.BASE_URL}speed3.jpg`,
       alt: "FastLine Follower - Sensor Array Closeup"
     },
     {
       type: "image",
-      src: `${import.meta.env.BASE_URL}public/speed4.jpg`,
+      src: `${import.meta.env.BASE_URL}speed4.jpg`,
       alt: "FastLine Follower - On the Track"
     }
   ]
@@ -534,12 +534,12 @@ The computer vision subsystem was a core enabler of our RoboGames 2024 robot’s
   media: [
     {
       type: "image",
-      src: `${import.meta.env.BASE_URL}public/robo1.jpg`,
+      src: `${import.meta.env.BASE_URL} robo1.jpg`,
       alt: "RoboGames 2024 Robot – Camera and Vision Setup"
     },
     {
       type: "image",
-      src: `${import.meta.env.BASE_URL}public/robo7.png`,
+      src: `${import.meta.env.BASE_URL} robo7.png`,
       alt: "Team Collaboration – RoboGames 2024"
     },
     {
@@ -641,17 +641,17 @@ A professional, fully responsive website built for the Bioplastics Revolution pr
   media: [
     {
       type: "image",
-      src: `${import.meta.env.BASE_URL}public/web1.png`,
+      src: `${import.meta.env.BASE_URL}web1.png`,
       alt: "Bioplastics Website Home Page"
     },
     {
       type: "image",
-      src: `${import.meta.env.BASE_URL}public/web2.png`,
+      src: `${import.meta.env.BASE_URL}web2.png`,
       alt: "Project Gallery and Product Listings"
     },
     {
       type: "image",
-      src: `${import.meta.env.BASE_URL}public/web3.png`,
+      src: `${import.meta.env.BASE_URL} web3.png`,
       alt: "Contact Form and Responsive Layout"
     }
   ]
@@ -720,17 +720,17 @@ All features—timers, alarms, environmental monitoring, servo control, and netw
   media: [
     {
       type: "image",
-      src: `${import.meta.env.BASE_URL}public/medi3.png`,
+      src: `${import.meta.env.BASE_URL}medi3.png`,
       alt: "ESP32 Medibox Simulation OLED Menu"
     },
     {
       type: "video",
-      src: `${import.meta.env.BASE_URL}public/medi1.mp4`,
+      src: `${import.meta.env.BASE_URL} medi1.mp4`,
       alt: "Medibox OLED Display and Alarm Demo"
     },
     {
       type: "video",
-      src: `${import.meta.env.BASE_URL}public/medi2.mp4`,
+      src: `${import.meta.env.BASE_URL}medi2.mp4`,
       alt: "Wokwi Servo, LED, and MQTT Simulation"
     }
   ]
@@ -792,27 +792,27 @@ Designed and built for the EN1190 Engineering Design Project, this machine autom
   media: [
     {
       type: "image",
-      src: `${import.meta.env.BASE_URL}public/shoe1.jpg`,
+      src: `${import.meta.env.BASE_URL}shoe1.jpg`,
       alt: "Shoe Cleaning Machine – Enclosure Open View"
     },
     {
       type: "image",
-      src: `${import.meta.env.BASE_URL}public/shoe2.jpg`,
+      src: `${import.meta.env.BASE_URL} shoe2.jpg`,
       alt: "Shoe Cleaning Machine – PCB and Electronics"
     },
     {
       type: "image",
-      src: `${import.meta.env.BASE_URL}public/shoe3.jpg`,
+      src: `${import.meta.env.BASE_URL}shoe3.jpg`,
       alt: "Shoe Cleaning Machine – 3D Printed Components"
     },
     {
       type: "image",
-      src: `${import.meta.env.BASE_URL}public/shoe4.jpg`,
+      src: `${import.meta.env.BASE_URL}shoe4.jpg`,
       alt: "Shoe Cleaning Machine – CAD Enclosure Design"
     },
     {
       type: "video",
-      src: `${import.meta.env.BASE_URL}public/shoe5.mp4`,
+      src: `${import.meta.env.BASE_URL}shoe5.mp4`,
       alt: "Shoe Cleaning and Drying Machine – Demo Video"
     }
   ]
@@ -860,22 +860,22 @@ A comprehensive linear power supply designed and built for EN2090 Laboratory Pra
   media: [
     {
       type: "image",
-      src: `${import.meta.env.BASE_URL}public/ana1.png`,
+      src: `${import.meta.env.BASE_URL}ana1.png`,
       alt: "Linear Power Supply – Final Product"
     },
     {
       type: "image",
-      src: `${import.meta.env.BASE_URL}public/ana2.jpg`,
+      src: `${import.meta.env.BASE_URL} ana2.jpg`,
       alt: "PCB Layout – High Current Design"
     },
     {
       type: "image",
-      src: `${import.meta.env.BASE_URL}public/ana3.jpg`,
+      src: `${import.meta.env.BASE_URL} ana3.jpg`,
       alt: "Enclosure – Front View"
     },
     {
       type: "image",
-      src: `${import.meta.env.BASE_URL}public/ana4.jpg`,
+      src: `${import.meta.env.BASE_URL}ana4.jpg`,
       alt: "Enclosure – Side View"
     }
 
@@ -952,27 +952,27 @@ Gallery and demo video below.
   media: [
     {
       type: "image",
-      src: `${import.meta.env.BASE_URL}public/bio1.jpg`,
+      src: `${import.meta.env.BASE_URL}bio1.jpg`,
       alt: "Bioplastic Revolution – Ocean's Gift – Product"
     },
     {
       type: "image",
-      src: `${import.meta.env.BASE_URL}public/bio2.jpg`,
+      src: `${import.meta.env.BASE_URL}bio2.jpg`,
       alt: "Seaweed Harvesting for Bioplastic"
     },
     {
       type: "image",
-      src: `${import.meta.env.BASE_URL}public/bio3.jpeg`,
+      src: `${import.meta.env.BASE_URL}bio3.jpeg`,
       alt: "Biodegradable Straws and Bags"
     },
     {
       type: "image",
-      src: `${import.meta.env.BASE_URL}public/bio4.jpg`,
+      src: `${import.meta.env.BASE_URL}bio4.jpg`,
       alt: "Community Engagement with Seaweed Farmers"
     },
     {
       type: "video",
-      src: `${import.meta.env.BASE_URL}public/bio5.mp4`,
+      src: `${import.meta.env.BASE_URL}bio5.mp4`,
       alt: "Bioplastic Revolution – YouTube Demo"
     }
   ]
