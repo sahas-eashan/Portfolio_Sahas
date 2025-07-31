@@ -350,7 +350,7 @@ While our micromouse didn’t fully solve the final maze, it came impressively c
 The journey taught us invaluable lessons in embedded control, sensor integration, and real-world problem solving. We’re excited to keep building on these skills for future robotics challenges.
 
 ---
-  `,github:"https://github.com/sahas-eashan/MicroMouseV1_2023",media:[{type:"image",src:"/Fortfolio_Sahas/ mouse.jpg",alt:"MicroMouse Mascot"},{type:"video",src:"/Fortfolio_Sahas/mouse.mp4",alt:"MicroMouse SLIIT Robofest 2024 Demo"}]},{id:"fastline-follower",category:"robotics",title:"FastLine Follower",description:"High-speed line follower, advanced sensor array, dynamic PID control.",detail:`
+  `,github:"https://github.com/sahas-eashan/MicroMouseV1_2023",media:[{type:"image",src:"/Fortfolio_Sahas/mouse.jpg",alt:"MicroMouse Mascot"},{type:"video",src:"/Fortfolio_Sahas/mouse.mp4",alt:"MicroMouse SLIIT Robofest 2024 Demo"}]},{id:"fastline-follower",category:"robotics",title:"FastLine Follower",description:"High-speed line follower, advanced sensor array, dynamic PID control.",detail:`
 ## FastLine Follower – Dextron 2024, ITUM
 
 Excited to share this achievement!  
@@ -416,7 +416,7 @@ The computer vision subsystem was a core enabler of our RoboGames 2024 robot’s
 
 ---
 
-`,media:[{type:"image",src:"/Fortfolio_Sahas/ robo1.jpg",alt:"RoboGames 2024 Robot – Camera and Vision Setup"},{type:"image",src:"/Fortfolio_Sahas/ robo7.png",alt:"Team Collaboration – RoboGames 2024"},{type:"video",src:"https://www.youtube.com/watch?v=kNw_bI8qk0k&embeds_referring_euri=https%3A%2F%2Fwww.pankajabalasooriya.me%2F&source_ve_path=OTY3MTQ",alt:"RoboGames 2024 – Finals Demonstration Video"}]},{id:"agentic-ai",category:"ai",title:"Agentic AI Practice",description:"Modular, multi-agent system for web search, finance, and document Q&A—real-time reasoning and collaboration.",detail:`
+`,media:[{type:"image",src:"/Fortfolio_Sahas/robo1.jpg",alt:"RoboGames 2024 Robot – Camera and Vision Setup"},{type:"image",src:"/Fortfolio_Sahas/robo7.png",alt:"Team Collaboration – RoboGames 2024"},{type:"video",src:"https://www.youtube.com/watch?v=kNw_bI8qk0k&embeds_referring_euri=https%3A%2F%2Fwww.pankajabalasooriya.me%2F&source_ve_path=OTY3MTQ",alt:"RoboGames 2024 – Finals Demonstration Video"}]},{id:"agentic-ai",category:"ai",title:"Agentic AI Practice",description:"Modular, multi-agent system for web search, finance, and document Q&A—real-time reasoning and collaboration.",detail:`
 ## Agentic AI Practice – Multi-Agent LLM System
 
 Developed an advanced agentic AI platform using Ollama (Llama 3.1.8B) and PHI-playground to orchestrate multiple specialized agents for real-world information retrieval, reasoning, and synthesis.
@@ -477,7 +477,7 @@ A professional, fully responsive website built for the Bioplastics Revolution pr
 
 *This project demonstrates modern web development practices and eco-friendly innovation, making sustainable solutions accessible to a wider audience.*
 
-  `,github:"https://github.com/sahas-eashan/WEB_bioplastics_revolution_",media:[{type:"image",src:"/Fortfolio_Sahas/web1.png",alt:"Bioplastics Website Home Page"},{type:"image",src:"/Fortfolio_Sahas/web2.png",alt:"Project Gallery and Product Listings"},{type:"image",src:"/Fortfolio_Sahas/ web3.png",alt:"Contact Form and Responsive Layout"}]},{id:"esp32-medibox",category:"iot",title:"ESP32 Medibox Simulation – EN2853",description:"ESP32 Medibox: reminders, environmental monitoring, notifications, and smart servo control—simulated in PlatformIO & Wokwi.",detail:`
+  `,github:"https://github.com/sahas-eashan/WEB_bioplastics_revolution_",media:[{type:"image",src:"/Fortfolio_Sahas/web1.png",alt:"Bioplastics Website Home Page"},{type:"image",src:"/Fortfolio_Sahas/web2.png",alt:"Project Gallery and Product Listings"},{type:"image",src:"/Fortfolio_Sahas/web3.png",alt:"Contact Form and Responsive Layout"}]},{id:"esp32-medibox",category:"iot",title:"ESP32 Medibox Simulation – EN2853",description:"ESP32 Medibox: reminders, environmental monitoring, notifications, and smart servo control—simulated in PlatformIO & Wokwi.",detail:`
 ## ESP32 Medibox – IoT Simulation (EN2853)
 
 A full-featured smart medicine box developed on ESP32 and **simulated with PlatformIO and Wokwi**. Designed for the EN2853 Embedded Systems course, the project demonstrates practical IoT integration for healthcare, environmental monitoring, and user interaction.
@@ -528,7 +528,7 @@ All features—timers, alarms, environmental monitoring, servo control, and netw
 
 ---
 
-  `,github:"https://github.com/sahas-eashan/ESP32-Medibox-Project---EN2853",media:[{type:"image",src:"/Fortfolio_Sahas/medi3.png",alt:"ESP32 Medibox Simulation OLED Menu"},{type:"video",src:"/Fortfolio_Sahas/ medi1.mp4",alt:"Medibox OLED Display and Alarm Demo"},{type:"video",src:"/Fortfolio_Sahas/medi2.mp4",alt:"Wokwi Servo, LED, and MQTT Simulation"}]},{id:"shoe-cleaning-machine",category:"iot",title:"Shoe Cleaning and Drying Machine (EN1190)",description:"A fully functional, automated shoe cleaning and drying system with custom enclosure, PCB, and 3D-printed parts.",detail:`
+  `,github:"https://github.com/sahas-eashan/ESP32-Medibox-Project---EN2853",media:[{type:"image",src:"/Fortfolio_Sahas/medi3.png",alt:"ESP32 Medibox Simulation OLED Menu"},{type:"video",src:"/Fortfolio_Sahas/medi1.mp4",alt:"Medibox OLED Display and Alarm Demo"},{type:"video",src:"/Fortfolio_Sahas/medi2.mp4",alt:"Wokwi Servo, LED, and MQTT Simulation"}]},{id:"shoe-cleaning-machine",category:"iot",title:"Shoe Cleaning and Drying Machine (EN1190)",description:"A fully functional, automated shoe cleaning and drying system with custom enclosure, PCB, and 3D-printed parts.",detail:`
 ## Shoe Cleaning and Drying Machine – EN1190
 
 Designed and built for the EN1190 Engineering Design Project, this machine automates both the cleaning and drying of shoes in a single, user-friendly device.
@@ -574,7 +574,7 @@ Designed and built for the EN1190 Engineering Design Project, this machine autom
 - Manawadu MD
 
 ---
-  `,github:"https://github.com/sahas-eashan/shoe-cleaning-drying-machine",media:[{type:"image",src:"/Fortfolio_Sahas/shoe1.jpg",alt:"Shoe Cleaning Machine – Enclosure Open View"},{type:"image",src:"/Fortfolio_Sahas/ shoe2.jpg",alt:"Shoe Cleaning Machine – PCB and Electronics"},{type:"image",src:"/Fortfolio_Sahas/shoe3.jpg",alt:"Shoe Cleaning Machine – 3D Printed Components"},{type:"image",src:"/Fortfolio_Sahas/shoe4.jpg",alt:"Shoe Cleaning Machine – CAD Enclosure Design"},{type:"video",src:"/Fortfolio_Sahas/shoe5.mp4",alt:"Shoe Cleaning and Drying Machine – Demo Video"}]},{id:"linear-psu",category:"hardware",title:"Linear Power Supply Design",description:"10V 10A linear PSU: advanced voltage regulation, dual-layer PCB, full protection suite.",detail:`
+  `,github:"https://github.com/sahas-eashan/shoe-cleaning-drying-machine",media:[{type:"image",src:"/Fortfolio_Sahas/shoe1.jpg",alt:"Shoe Cleaning Machine – Enclosure Open View"},{type:"image",src:"/Fortfolio_Sahas/shoe2.jpg",alt:"Shoe Cleaning Machine – PCB and Electronics"},{type:"image",src:"/Fortfolio_Sahas/shoe3.jpg",alt:"Shoe Cleaning Machine – 3D Printed Components"},{type:"image",src:"/Fortfolio_Sahas/shoe4.jpg",alt:"Shoe Cleaning Machine – CAD Enclosure Design"},{type:"video",src:"/Fortfolio_Sahas/shoe5.mp4",alt:"Shoe Cleaning and Drying Machine – Demo Video"}]},{id:"linear-psu",category:"hardware",title:"Linear Power Supply Design",description:"10V 10A linear PSU: advanced voltage regulation, dual-layer PCB, full protection suite.",detail:`
 ## Linear Power Supply Design – 10V, 10A Precision Lab Supply
 
 A comprehensive linear power supply designed and built for EN2090 Laboratory Practice, meeting rigorous specs for stable 10V/10A output. The project involved complete analog circuit design, simulation, custom PCB, thermal engineering, and safety features.
@@ -605,7 +605,7 @@ A comprehensive linear power supply designed and built for EN2090 Laboratory Pra
 
 ---
 
-`,media:[{type:"image",src:"/Fortfolio_Sahas/ana1.png",alt:"Linear Power Supply – Final Product"},{type:"image",src:"/Fortfolio_Sahas/ ana2.jpg",alt:"PCB Layout – High Current Design"},{type:"image",src:"/Fortfolio_Sahas/ ana3.jpg",alt:"Enclosure – Front View"},{type:"image",src:"/Fortfolio_Sahas/ana4.jpg",alt:"Enclosure – Side View"}]},{id:"bioplastic-revo",category:"sustain",title:"Bioplastic Revolution – Ocean's Gift",description:"Biodegradable cling films and bags from Sri Lankan seaweed. Eco-innovation against marine plastic pollution.",detail:`
+`,media:[{type:"image",src:"/Fortfolio_Sahas/ana1.png",alt:"Linear Power Supply – Final Product"},{type:"image",src:"/Fortfolio_Sahas/ana2.jpg",alt:"PCB Layout – High Current Design"},{type:"image",src:"/Fortfolio_Sahas/ana3.jpg",alt:"Enclosure – Front View"},{type:"image",src:"/Fortfolio_Sahas/ana4.jpg",alt:"Enclosure – Side View"}]},{id:"bioplastic-revo",category:"sustain",title:"Bioplastic Revolution – Ocean's Gift",description:"Biodegradable cling films and bags from Sri Lankan seaweed. Eco-innovation against marine plastic pollution.",detail:`
 ## PlastiSea – Seaweed-Based Bioplastics to Combat Plastic Pollution
 
 **Finalist at PLEASE Hack 2025 | "Best Environment Project" Award, Tyumen Ideathon**
