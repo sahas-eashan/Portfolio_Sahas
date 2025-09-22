@@ -1,160 +1,203 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { GraduationCap, Award, Users, MapPin } from 'lucide-react';
-import Card from '@/components/ui/Card';
+import { GraduationCap, Award, Users, Star } from 'lucide-react';
 import Badge from '@/components/ui/Badge';
 import { LEADERSHIP_ROLES, EDUCATION, CERTIFICATIONS, EXTRA_ACTIVITIES } from '@/data/experience';
+import { generateSeededPositions } from '@/utils/seededRandom';
 
 const About = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
+  const [isMounted, setIsMounted] = useState(false);
+  const [floatingElements, setFloatingElements] = useState<any[]>([]);
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6 },
-    },
-  };
+  useEffect(() => {
+    setIsMounted(true);
+    const positions = generateSeededPositions(12, 54321);
+    setFloatingElements(positions);
+  }, []);
 
   return (
-    <section id="about" className="section-padding bg-slate-50/50 dark:bg-slate-900/30">
-      <div className="container-custom">
+    <section
+      id="about"
+      className="relative min-h-screen overflow-hidden py-20 lg:py-32"
+      style={{
+        background: 'linear-gradient(135deg, #0a0a1a 0%, #1a1a3e 25%, #2d1b69 50%, #1a1a3e 75%, #0a0a1a 100%)',
+      }}
+    >
+      {/* Enhanced Background Effects */}
+      <div className="absolute inset-0">
+        {/* Gradient Orbs */}
+        <div className="absolute top-20 right-1/4 w-96 h-96 bg-gradient-to-r from-purple-400/15 to-blue-600/15 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 left-1/4 w-96 h-96 bg-gradient-to-r from-cyan-400/15 to-purple-600/15 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '3s' }}></div>
+
+        {/* Floating Elements */}
+        <div className="absolute inset-0 pointer-events-none">
+          {isMounted && floatingElements.map((element, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-2 h-2 bg-blue-400/40 rounded-full"
+              animate={{
+                y: [0, -20, 0],
+                opacity: [0.4, 0.8, 0.4],
+                scale: [1, 1.2, 1]
+              }}
+              transition={{
+                duration: element.duration,
+                repeat: Infinity,
+                delay: element.delay
+              }}
+              style={{
+                left: element.left + '%',
+                top: element.top + '%',
+              }}
+            />
+          ))}
+        </div>
+      </div>
+
+      <div className="relative z-10 w-full flex flex-col items-center justify-center px-8 lg:px-16">
+        {/* Title */}
         <motion.div
-          className="text-center space-element"
+          className="text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-heading gradient-text mb-4">About Me</h2>
-          <p className="text-body text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
-            I'm an enthusiastic undergraduate at the University of Moratuwa specializing in Electronic and
-            Telecommunication Engineering with a CGPA of 3.94. Passionate about robotics, hardware design,
-            AI, and solving real-world problems with technology.
-          </p>
-        </motion.div>
+          <motion.h2
+            className="text-5xl md:text-6xl font-bold mb-6"
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1 }}
+          >
+            <span className="bg-gradient-to-r from-blue-300 via-purple-400 to-cyan-300 bg-clip-text text-transparent">
+              About Me
+            </span>
+          </motion.h2>
 
-        <motion.div
-          className="grid grid-cols-1 lg:grid-cols-3 gap-8 space-element"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          {/* Education */}
-          <motion.div variants={itemVariants}>
-            <Card className="h-full">
-              <div className="flex items-center space-x-3 mb-4">
-                <div className="p-2 bg-blue-600/20 rounded-lg">
-                  <GraduationCap className="w-6 h-6 text-blue-400" />
-                </div>
-                <h3 className="text-xl font-semibold text-slate-800 dark:text-white">Education</h3>
-              </div>
+          {/* Intro Section */}
+          <motion.div
+            className="flex flex-col sm:flex-row items-center justify-center gap-8 max-w-4xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <div className="text-center">
+              <p className="text-lg text-white">
+                Research Associate at <span className="text-cyan-300 font-semibold border-b-2 border-cyan-300/50">RoboticGen Labs</span>
+              </p>
+            </div>
 
-              {EDUCATION.map((edu, index) => (
-                <div key={index} className="space-y-3">
-                  <div>
-                    <h4 className="font-semibold text-slate-800 dark:text-white">{edu.title}</h4>
-                    <p className="text-blue-600 dark:text-blue-400 font-medium">{edu.organization}</p>
-                    <p className="text-slate-500 dark:text-slate-400 text-sm">{edu.period}</p>
-                    <p className="text-slate-600 dark:text-slate-300 text-sm mt-2 leading-relaxed">
-                      {edu.description}
-                    </p>
-                  </div>
+            <div className="hidden sm:block w-px h-8 bg-white/20"></div>
 
-                  {edu.skills && (
-                    <div className="flex flex-wrap gap-2">
-                      {edu.skills.slice(0, 3).map((skill) => (
-                        <Badge key={skill} variant="primary" size="sm">
-                          {skill}
-                        </Badge>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              ))}
-            </Card>
-          </motion.div>
-
-          {/* Certifications */}
-          <motion.div variants={itemVariants}>
-            <Card className="h-full">
-              <div className="flex items-center space-x-3 mb-4">
-                <div className="p-2 bg-indigo-600/20 rounded-lg">
-                  <Award className="w-6 h-6 text-indigo-400" />
-                </div>
-                <h3 className="text-xl font-semibold text-slate-800 dark:text-white">Certifications</h3>
-              </div>
-
-              <div className="space-y-4">
-                {CERTIFICATIONS.map((cert, index) => (
-                  <div key={index} className="border-b border-slate-700/50 last:border-b-0 pb-4 last:pb-0">
-                    <h4 className="font-semibold text-slate-800 dark:text-white text-sm">{cert.title}</h4>
-                    <p className="text-indigo-600 dark:text-indigo-400 text-sm">{cert.organization}</p>
-                    <p className="text-slate-500 dark:text-slate-400 text-xs">{cert.period}</p>
-                  </div>
-                ))}
-              </div>
-            </Card>
-          </motion.div>
-
-          {/* Quick Stats */}
-          <motion.div variants={itemVariants}>
-            <Card className="h-full">
-              <div className="flex items-center space-x-3 mb-4">
-                <div className="p-2 bg-teal-600/20 rounded-lg">
-                  <MapPin className="w-6 h-6 text-teal-400" />
-                </div>
-                <h3 className="text-xl font-semibold text-slate-800 dark:text-white">Quick Facts</h3>
-              </div>
-
-              <div className="space-y-4">
-                <div className="grid grid-cols-2 gap-4">
-                  {[
-                    { label: "CGPA", value: "3.94/4.0" },
-                    { label: "Year", value: "3rd Year" },
-                    { label: "Location", value: "Sri Lanka" },
-                    { label: "Status", value: "Available" },
-                  ].map((stat) => (
-                    <div key={stat.label} className="text-center p-3 bg-slate-200/50 dark:bg-slate-800/50 rounded-lg">
-                      <div className="text-lg font-bold text-slate-800 dark:text-white">{stat.value}</div>
-                      <div className="text-slate-500 dark:text-slate-400 text-xs">{stat.label}</div>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="pt-2 border-t border-slate-700/50">
-                  <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                    Currently pursuing my degree while actively participating in
-                    robotics competitions, hackathons, and leadership roles.
-                  </p>
-                </div>
-              </div>
-            </Card>
+            <div className="text-center">
+              <p className="text-lg text-white">
+                CGPA <span className="text-emerald-300 font-semibold border-b-2 border-emerald-300/50">3.92/4.0</span>
+              </p>
+            </div>
           </motion.div>
         </motion.div>
 
-        {/* Leadership Roles */}
+        {/* Unified Card-Based Layout */}
+        <div className="w-full max-w-6xl space-y-12 mb-16 lg:mb-20">
+
+          {/* Education & Certifications Grid */}
+          <motion.div
+            className="grid grid-cols-1 lg:grid-cols-2 gap-8"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            {/* Education Card */}
+            <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-8 hover:bg-white/8 transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-blue-500/10">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="p-3 bg-blue-500/20 rounded-xl border border-blue-500/30">
+                  <GraduationCap className="w-6 h-6 text-blue-300" />
+                </div>
+                <h3 className="text-2xl font-bold text-white">Education</h3>
+              </div>
+
+              <div className="space-y-4">
+                <h4 className="text-xl font-bold text-white leading-tight">
+                  B.Sc. Electronic & Telecommunication Engineering
+                </h4>
+
+                <div className="space-y-2">
+                  <p className="text-cyan-300 font-semibold">University of Moratuwa</p>
+                  <p className="text-blue-300">2023 – 2027</p>
+                </div>
+
+                <div className="inline-block px-4 py-2 bg-emerald-500/20 border border-emerald-500/30 rounded-full">
+                  <p className="text-emerald-300 font-bold">CGPA: 3.92/4.0</p>
+                </div>
+
+                <p className="text-gray-300 leading-relaxed text-sm">
+                  First Class Honours candidate specializing in{" "}
+                  <span className="text-blue-300 font-medium">electronics</span>,{" "}
+                  <span className="text-cyan-300 font-medium">robotics</span>, and{" "}
+                  <span className="text-purple-300 font-medium">signal processing</span>.
+                </p>
+              </div>
+            </div>
+
+            {/* Certifications Card */}
+            <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-8 hover:bg-white/8 transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-purple-500/10">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="p-3 bg-purple-500/20 rounded-xl border border-purple-500/30">
+                  <Award className="w-6 h-6 text-purple-300" />
+                </div>
+                <h3 className="text-2xl font-bold text-white">Certifications</h3>
+              </div>
+
+              <div className="space-y-4">
+                <div className="space-y-3">
+                  <div className="border-l-4 border-blue-400 pl-4">
+                    <h4 className="text-white font-semibold">Mathematics for Machine Learning</h4>
+                    <p className="text-blue-300 text-sm">Imperial College London • Dec 2024</p>
+                  </div>
+
+                  <div className="border-l-4 border-cyan-400 pl-4">
+                    <h4 className="text-white font-semibold">Deep Learning Specialization</h4>
+                    <p className="text-cyan-300 text-sm">DeepLearning.AI • Jun 2024</p>
+                  </div>
+
+                  <div className="border-l-4 border-purple-400 pl-4">
+                    <h4 className="text-white font-semibold">Embedded Systems & AI</h4>
+                    <p className="text-purple-300 text-sm">UC Irvine • Ongoing</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+
+        </div>
+
+        {/* Leadership Section */}
         <motion.div
-          className="space-element"
+          className="w-full max-w-6xl mb-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <div className="text-center mb-8">
-            <h3 className="text-subheading text-slate-800 dark:text-white mb-2">Leadership & Community</h3>
-            <p className="text-slate-600 dark:text-slate-400">Active involvement in university organizations and community building</p>
+          <div className="text-center mb-12">
+            <motion.h3
+              className="text-3xl lg:text-4xl font-bold mb-3"
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <span className="bg-gradient-to-r from-blue-300 via-cyan-400 to-purple-400 bg-clip-text text-transparent">
+                Leadership Roles
+              </span>
+            </motion.h3>
+            <p className="text-gray-400">Building communities and leading initiatives</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -165,20 +208,21 @@ const About = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
+                whileHover={{ y: -5, scale: 1.02 }}
+                className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 hover:bg-white/8 transition-all duration-300 hover:shadow-2xl hover:shadow-cyan-500/10"
               >
-                <Card hover className="h-full">
-                  <div className="flex items-start space-x-3">
-                    <div className="p-2 bg-gradient-to-br from-blue-600/20 to-indigo-600/20 rounded-lg flex-shrink-0">
-                      <Users className="w-5 h-5 text-blue-400" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <h4 className="font-semibold text-slate-800 dark:text-white text-sm mb-1">{role.title}</h4>
-                      <p className="text-blue-600 dark:text-blue-400 text-sm font-medium">{role.organization}</p>
-                      <p className="text-slate-500 dark:text-slate-400 text-xs mb-2">{role.period}</p>
-                      <p className="text-slate-600 dark:text-slate-300 text-xs leading-relaxed">{role.description}</p>
+                <div className="flex items-start gap-4 mb-4">
+                  <div className="p-3 bg-cyan-500/20 rounded-xl border border-cyan-500/30">
+                    <Users className="w-5 h-5 text-cyan-300" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h4 className="font-bold text-white text-base mb-3 leading-tight">{role.title}</h4>
+                    <div className="space-y-2">
+                      <p className="text-cyan-300 font-medium text-sm">{role.organization}</p>
+                      <p className="text-blue-300 text-sm">{role.period}</p>
                     </div>
                   </div>
-                </Card>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -186,14 +230,25 @@ const About = () => {
 
         {/* Extra Activities */}
         <motion.div
-          className="text-center"
+          className="w-full max-w-5xl text-center"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <h3 className="text-lg font-semibold text-slate-800 dark:text-white mb-4">Extra Curricular Activities</h3>
-          <div className="flex flex-wrap justify-center gap-2 max-w-4xl mx-auto">
+          <motion.h3
+            className="text-2xl lg:text-3xl font-bold mb-8"
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <span className="bg-gradient-to-r from-purple-300 via-pink-400 to-purple-400 bg-clip-text text-transparent">
+              Activities & Involvement
+            </span>
+          </motion.h3>
+
+          <div className="flex flex-wrap justify-center gap-3">
             {EXTRA_ACTIVITIES.map((activity, index) => (
               <motion.div
                 key={activity}
@@ -201,10 +256,12 @@ const About = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.05 }}
+                whileHover={{ scale: 1.05, y: -3 }}
+                className="px-4 py-2 bg-purple-500/10 border border-purple-400/30 rounded-full hover:bg-purple-500/20 hover:border-purple-400/50 transition-all duration-300"
               >
-                <Badge variant="default" size="sm">
+                <span className="text-sm font-medium text-purple-200 hover:text-purple-100 transition-colors">
                   {activity}
-                </Badge>
+                </span>
               </motion.div>
             ))}
           </div>

@@ -7,6 +7,7 @@ import { ArrowDown, Github, Linkedin, Mail, Download, Zap, CircuitBoard, Cpu } f
 const Hero = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const containerRef = useRef(null);
 
   // Mouse tracking for 3D effects
@@ -16,14 +17,14 @@ const Hero = () => {
   const mouseXSpring = useSpring(mouseX, springConfig);
   const mouseYSpring = useSpring(mouseY, springConfig);
 
-  // Transform mouse position to rotation values
-  const rotateX = useTransform(mouseYSpring, [-300, 300], [15, -15]);
-  const rotateY = useTransform(mouseXSpring, [-300, 300], [-15, 15]);
+  // Transform mouse position to movement values instead of rotation
+  const moveX = useTransform(mouseXSpring, [-300, 300], [-10, 10]);
+  const moveY = useTransform(mouseYSpring, [-300, 300], [-10, 10]);
 
   useEffect(() => {
-    const handleMouseMove = (e) => {
+    const handleMouseMove = (e: MouseEvent) => {
       if (containerRef.current) {
-        const rect = containerRef.current.getBoundingClientRect();
+        const rect = (containerRef.current as HTMLElement).getBoundingClientRect();
         const centerX = rect.left + rect.width / 2;
         const centerY = rect.top + rect.height / 2;
         mouseX.set(e.clientX - centerX);
@@ -50,182 +51,175 @@ const Hero = () => {
   ];
 
   // Floating particles animation - Fixed for SSR
-  const [particles, setParticles] = useState([]);
+  const [particles, setParticles] = useState<React.ReactElement[]>([]);
+
+  // Simple seeded random function to ensure consistency
+  const seededRandom = (seed: number) => {
+    const x = Math.sin(seed) * 10000;
+    return x - Math.floor(x);
+  };
 
   useEffect(() => {
+    setIsMounted(true);
+
     const generateParticles = () => {
-      const newParticles = Array.from({ length: 20 }, (_, i) => (
-        <motion.div
-          key={i}
-          className="absolute w-1 h-1 bg-blue-400/60 rounded-full"
-          initial={{
-            x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1000),
-            y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
-            opacity: 0
-          }}
-          animate={{
-            x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1000),
-            y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
-            opacity: [0, 1, 0]
-          }}
-          transition={{
-            duration: Math.random() * 10 + 10,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-          style={{
-            left: Math.random() * 100 + '%',
-            top: Math.random() * 100 + '%',
-          }}
-        />
-      ));
+      const newParticles = Array.from({ length: 20 }, (_, i) => {
+        const seed = i * 123.456; // Use index as seed for consistency
+        return (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 bg-blue-400/60 rounded-full"
+            initial={{
+              x: seededRandom(seed + 1) * (window.innerWidth || 1000),
+              y: seededRandom(seed + 2) * (window.innerHeight || 800),
+              opacity: 0
+            }}
+            animate={{
+              x: seededRandom(seed + 3) * (window.innerWidth || 1000),
+              y: seededRandom(seed + 4) * (window.innerHeight || 800),
+              opacity: [0, 1, 0]
+            }}
+            transition={{
+              duration: seededRandom(seed + 5) * 10 + 10,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+            style={{
+              left: seededRandom(seed + 6) * 100 + '%',
+              top: seededRandom(seed + 7) * 100 + '%',
+            }}
+          />
+        );
+      });
       setParticles(newParticles);
     };
 
-    if (typeof window !== 'undefined') {
-      generateParticles();
-    }
+    generateParticles();
   }, []);
 
   return (
     <section
       ref={containerRef}
       id="home"
-      className="relative w-full h-screen overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950"
-      style={{ perspective: '1000px' }}
+      className="relative w-full h-screen overflow-hidden"
+      style={{
+        background: 'linear-gradient(135deg, #0f0f23 0%, #1a1a3e 25%, #2d1b69 50%, #1a1a3e 75%, #0f0f23 100%)',
+        perspective: '1000px'
+      }}
     >
-      {/* Animated Grid Background */}
-      <div className="absolute inset-0 opacity-30">
+      {/* Enhanced Animated Background */}
+      <div className="absolute inset-0">
+        {/* Gradient Orbs */}
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-blue-400/20 to-purple-600/20 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-cyan-400/20 to-blue-600/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute top-1/2 left-1/2 w-72 h-72 bg-gradient-to-r from-purple-400/10 to-pink-600/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '4s' }}></div>
+
+        {/* Dynamic Grid */}
         <div
-          className="absolute inset-0"
+          className="absolute inset-0 opacity-20"
           style={{
             backgroundImage: `
-              linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px)
+              radial-gradient(circle at 1px 1px, rgba(59, 130, 246, 0.3) 1px, transparent 0)
             `,
-            backgroundSize: '50px 50px',
-            transform: `translate(${mousePosition.x * 0.02}px, ${mousePosition.y * 0.02}px)`,
-            transition: 'transform 0.1s ease-out'
+            backgroundSize: '40px 40px',
+            transform: `translate(${mousePosition.x * 0.01}px, ${mousePosition.y * 0.01}px)`,
+            transition: 'transform 0.2s ease-out'
           }}
         />
       </div>
 
       {/* Floating Particles */}
       <div className="absolute inset-0 pointer-events-none">
-        {particles}
+        {isMounted && particles}
       </div>
 
-      {/* Main Holographic Container */}
+      {/* Main Container */}
       <motion.div
         className="relative z-20 h-full flex items-center justify-center p-8"
         style={{
-          rotateX,
-          rotateY,
-          transformStyle: 'preserve-3d'
+          x: moveX,
+          y: moveY
         }}
       >
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center max-w-7xl mx-auto">
 
-          {/* Left: Holographic Photo */}
+          {/* Left: Modern Profile Card */}
           <motion.div
             className="relative group"
-            initial={{ opacity: 0, z: -100 }}
-            animate={{ opacity: 1, z: 0 }}
-            transition={{ duration: 1.2, ease: "easeOut" }}
+            initial={{ opacity: 0, x: -100 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, ease: "easeOut" }}
             onHoverStart={() => setIsHovered(true)}
             onHoverEnd={() => setIsHovered(false)}
-            style={{ transformStyle: 'preserve-3d' }}
           >
-            {/* Holographic frame */}
+            {/* Glassmorphism Photo Card */}
             <motion.div
               className="relative w-80 h-80 lg:w-96 lg:h-96 mx-auto"
               animate={{
-                rotateY: isHovered ? 10 : 0,
-                scale: isHovered ? 1.05 : 1
+                scale: isHovered ? 1.02 : 1,
+                rotateY: isHovered ? 5 : 0
               }}
-              transition={{ type: "spring", stiffness: 300 }}
-              style={{ transformStyle: 'preserve-3d' }}
+              transition={{ type: "spring", stiffness: 200, damping: 20 }}
+              style={{ transformStyle: "preserve-3d" }}
             >
-              {/* Glowing border effect */}
-              <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-blue-500/50 via-cyan-400/50 to-blue-600/50 blur-xl animate-pulse" />
-
-              {/* Photo container */}
-              <div className="relative w-full h-full rounded-3xl overflow-hidden border-2 border-cyan-400/30 shadow-2xl shadow-blue-500/20">
-                <img
-                  src="/images/sahas eashan.jpg"
-                  alt="Sahas Eashan"
-                  className="w-full h-full object-cover object-top"
-                />
-
-                {/* Holographic overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-blue-900/20 via-transparent to-cyan-400/10" />
-
-                {/* Scanning line effect */}
-                <motion.div
-                  className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-cyan-400 to-transparent"
-                  animate={{ y: [0, 384, 0] }}
-                  transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                />
+              {/* Glassmorphism Background */}
+              <div className="absolute inset-0 rounded-3xl bg-white/5 backdrop-blur-md border border-white/10 shadow-2xl">
+                <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-blue-500/10 via-purple-500/5 to-cyan-500/10" />
               </div>
 
-              {/* Floating tech icons */}
-              {[CircuitBoard, Cpu, Zap].map((Icon, index) => (
-                <motion.div
-                  key={index}
-                  className="absolute w-8 h-8 bg-blue-500/20 backdrop-blur-sm border border-blue-400/30 rounded-lg flex items-center justify-center"
-                  style={{
-                    left: `${20 + index * 30}%`,
-                    top: `${10 + index * 20}%`,
-                    transform: `translateZ(${20 + index * 10}px)`
-                  }}
-                  animate={{
-                    y: [0, -10, 0],
-                    rotateY: [0, 360],
-                  }}
-                  transition={{
-                    duration: 2 + index,
-                    repeat: Infinity,
-                    delay: index * 0.5
-                  }}
-                >
-                  <Icon size={16} className="text-blue-400" />
-                </motion.div>
-              ))}
+              {/* Photo container */}
+              <div className="relative w-full h-full p-4">
+                <div className="w-full h-full rounded-2xl overflow-hidden">
+                  <img
+                    src="/images/sahas eashan.jpg"
+                    alt="Sahas Eashan"
+                    className="w-full h-full object-cover object-top filter brightness-110"
+                  />
+
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-blue-500/10" />
+                </div>
+
+              </div>
+
+              {/* Glowing Ring */}
+              <div className="absolute inset-0 rounded-3xl border-2 border-gradient-to-r from-blue-400/50 to-purple-400/50 animate-spin-slow" style={{ animation: 'spin 20s linear infinite' }} />
             </motion.div>
           </motion.div>
 
-          {/* Right: Content with 3D cards */}
+          {/* Right: Content with modern design */}
           <motion.div
-            className="space-y-8"
+            className="space-y-6"
             initial={{ opacity: 0, x: 100 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.3 }}
-            style={{ transformStyle: 'preserve-3d' }}
           >
-            {/* Name Card */}
+            {/* Name Section */}
             <motion.div
-              className="relative p-6 bg-slate-800/20 backdrop-blur-lg border border-blue-500/20 rounded-2xl"
-              whileHover={{
-                z: 20,
-                boxShadow: "0 20px 40px rgba(59, 130, 246, 0.2)",
-                borderColor: "rgba(59, 130, 246, 0.4)"
-              }}
-              style={{ transformStyle: 'preserve-3d' }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
             >
               <motion.h1
-                className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight"
+                className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight mb-4"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.5 }}
               >
-                <span className="text-white">Hi, I'm</span>
-                <br />
                 <motion.span
-                  className="bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-600 bg-clip-text text-transparent"
+                  className="block text-white/90 mb-2"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.3 }}
+                >
+                  Hi, I'm
+                </motion.span>
+                <motion.span
+                  className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-purple-400"
                   animate={{
                     backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
                   }}
-                  transition={{ duration: 3, repeat: Infinity }}
+                  transition={{ duration: 4, repeat: Infinity }}
                   style={{ backgroundSize: "200% 200%" }}
                 >
                   Sahas Eashan
@@ -233,80 +227,87 @@ const Hero = () => {
               </motion.h1>
             </motion.div>
 
-            {/* Role Card */}
+            {/* Role Section */}
             <motion.div
-              className="relative p-6 bg-slate-800/20 backdrop-blur-lg border border-cyan-500/20 rounded-2xl"
-              whileHover={{
-                z: 20,
-                boxShadow: "0 20px 40px rgba(34, 211, 238, 0.2)",
-                borderColor: "rgba(34, 211, 238, 0.4)"
-              }}
-              style={{ transformStyle: 'preserve-3d' }}
+              className="space-y-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.7 }}
             >
-              <motion.div
-                className="space-y-2"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.7 }}
-              >
-                <p className="text-xl sm:text-2xl font-semibold text-cyan-300">
-                  Research Associate at RoboticGen Labs
-                </p>
-                <p className="text-lg text-blue-300/80">
-                  Electronic & Telecommunication Engineering Student
-                </p>
-              </motion.div>
+              <div className="flex items-center gap-3 text-xl sm:text-2xl font-semibold text-cyan-300">
+                <span className="w-3 h-3 bg-cyan-400 rounded-full animate-pulse" />
+                Research Associate at RoboticGen Labs
+              </div>
+              <p className="text-lg text-blue-200/90 ml-6">
+                Electronic & Telecommunication Engineering Student
+              </p>
             </motion.div>
 
-            {/* Description Card */}
+            {/* Description Section */}
             <motion.div
-              className="relative p-6 bg-slate-800/20 backdrop-blur-lg border border-purple-500/20 rounded-2xl"
-              whileHover={{
-                z: 20,
-                boxShadow: "0 20px 40px rgba(168, 85, 247, 0.2)",
-                borderColor: "rgba(168, 85, 247, 0.4)"
-              }}
-              style={{ transformStyle: 'preserve-3d' }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.9 }}
             >
-              <motion.p
-                className="text-lg text-slate-300 leading-relaxed"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.9 }}
-              >
-                Contributing to <span className="text-blue-400 font-semibold">advanced robotics R&D</span> with focus on
-                <span className="text-cyan-400 font-semibold"> PCB design</span>,
-                <span className="text-purple-400 font-semibold"> embedded systems integration</span>, and autonomous robotic solutions.
-              </motion.p>
+              <p className="text-lg leading-relaxed text-gray-200 max-w-2xl">
+                Contributing to{" "}
+                <span className="text-blue-400 font-semibold border-b-2 border-blue-400/50">
+                  advanced robotics & AI
+                </span>{" "}
+                with focus on{" "}
+                <span className="text-cyan-400 font-semibold border-b-2 border-cyan-400/50">
+                  AI applications
+                </span>
+                ,{" "}
+                <span className="text-purple-400 font-semibold border-b-2 border-purple-400/50">
+                  embedded systems
+                </span>
+                , and autonomous robotic solutions.
+              </p>
             </motion.div>
 
-            {/* Stats Cards */}
+            {/* Stats Section */}
             <motion.div
-              className="grid grid-cols-3 gap-4"
+              className="flex flex-wrap gap-8 items-center"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1.1 }}
             >
               {[
-                { label: "CGPA", value: "3.92", description: "First Class Honours Candidate", color: "from-emerald-400 to-green-500" },
-                { label: "Projects", value: "15+", description: "In Robotics, AI & Embedded Systems", color: "from-blue-400 to-cyan-500" },
-                { label: "Awards", value: "10+", description: "For Innovation & Academic Excellence", color: "from-purple-400 to-pink-500" },
+                {
+                  label: "CGPA",
+                  value: "3.92",
+                  description: "First Class Honours",
+                  color: "text-emerald-400",
+                  icon: "🎓"
+                },
+                {
+                  label: "Projects",
+                  value: "15+",
+                  description: "Technical Projects",
+                  color: "text-blue-400",
+                  icon: "🚀"
+                },
+                {
+                  label: "Awards",
+                  value: "10+",
+                  description: "Recognition",
+                  color: "text-purple-400",
+                  icon: "🏆"
+                },
               ].map((stat, index) => (
                 <motion.div
                   key={stat.label}
-                  className="relative p-4 bg-slate-800/20 backdrop-blur-lg border border-slate-600/20 rounded-xl text-center group"
-                  whileHover={{
-                    scale: 1.05,
-                    z: 15,
-                    borderColor: "rgba(59, 130, 246, 0.4)"
-                  }}
-                  style={{ transformStyle: 'preserve-3d' }}
+                  className="text-center group"
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  transition={{ type: "spring", stiffness: 300 }}
                 >
-                  <div className={`text-2xl font-bold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent`}>
+                  <div className="text-2xl mb-1">{stat.icon}</div>
+                  <div className={`text-3xl font-bold ${stat.color} mb-1`}>
                     {stat.value}
                   </div>
-                  <div className="text-blue-200 text-sm font-medium">{stat.label}</div>
-                  <div className="text-slate-400 text-xs italic mt-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="text-white/90 text-sm font-medium mb-1">{stat.label}</div>
+                  <div className="text-white/60 text-xs opacity-70 group-hover:opacity-100 transition-opacity">
                     {stat.description}
                   </div>
                 </motion.div>
@@ -315,40 +316,35 @@ const Hero = () => {
 
             {/* Action Buttons */}
             <motion.div
-              className="flex flex-col sm:flex-row items-start gap-6"
+              className="flex flex-col sm:flex-row items-start gap-6 pt-4"
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 1.3 }}
             >
               <motion.button
                 onClick={() => scrollToAbout()}
-                className="relative px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold text-base rounded-xl overflow-hidden group"
-                whileHover={{
-                  scale: 1.05,
-                  z: 25,
-                  boxShadow: "0 20px 40px rgba(59, 130, 246, 0.3)"
-                }}
+                className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 px-8 py-4 rounded-xl font-semibold text-white border border-blue-500/50 shadow-lg shadow-blue-500/25 transition-all duration-300"
+                whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 300 }}
               >
-                <span className="relative z-10">Explore My Universe</span>
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-cyan-600 to-blue-600"
-                  initial={{ x: "-100%" }}
-                  whileHover={{ x: "0%" }}
-                  transition={{ duration: 0.3 }}
-                />
+                <div className="flex items-center gap-2">
+                  <span>Explore My Universe</span>
+                  <motion.div
+                    animate={{ x: [0, 5, 0] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                  >
+                    ✨
+                  </motion.div>
+                </div>
               </motion.button>
 
               <motion.button
                 onClick={() => window.open('/resume.pdf', '_blank')}
-                className="relative px-8 py-4 bg-transparent border-2 border-blue-500/50 text-blue-400 font-semibold text-base rounded-xl backdrop-blur-sm group"
-                whileHover={{
-                  scale: 1.05,
-                  z: 25,
-                  borderColor: "rgba(59, 130, 246, 0.8)",
-                  backgroundColor: "rgba(59, 130, 246, 0.1)"
-                }}
+                className="bg-slate-800/50 hover:bg-slate-700/50 px-8 py-4 rounded-xl font-semibold text-white border border-slate-600/50 hover:border-slate-500/50 transition-all duration-300"
+                whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 300 }}
               >
                 <div className="flex items-center gap-2">
                   <Download size={18} />
@@ -359,7 +355,7 @@ const Hero = () => {
 
             {/* Social Links */}
             <motion.div
-              className="flex items-center gap-4"
+              className="flex items-center gap-4 pt-2"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1, delay: 1.5 }}
@@ -373,20 +369,14 @@ const Hero = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={social.name}
-                    className="relative p-3 bg-slate-800/30 border border-slate-600/30 rounded-full text-slate-300 group"
-                    whileHover={{
-                      scale: 1.2,
-                      z: 20,
-                      backgroundColor: "rgba(59, 130, 246, 0.2)",
-                      borderColor: "rgba(59, 130, 246, 0.5)"
-                    }}
+                    className="p-3 rounded-full text-white/80 hover:text-white bg-slate-800/30 hover:bg-slate-700/50 border border-slate-600/50 hover:border-slate-500/50 transition-all duration-300"
+                    whileHover={{ scale: 1.1, y: -2 }}
                     whileTap={{ scale: 0.9 }}
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 1.5 + index * 0.1 }}
+                    transition={{ delay: 1.5 + index * 0.1, type: "spring", stiffness: 300 }}
                   >
-                    <Icon size={20} />
-                    <div className="absolute inset-0 rounded-full bg-blue-400/20 opacity-0 group-hover:opacity-100 transition-opacity blur-sm" />
+                    <Icon size={18} />
                   </motion.a>
                 );
               })}
@@ -404,18 +394,39 @@ const Hero = () => {
       >
         <motion.button
           onClick={scrollToAbout}
-          className="p-4 bg-blue-600/20 backdrop-blur-sm border border-blue-500/30 rounded-full text-blue-300 group"
-          whileHover={{
-            scale: 1.1,
-            backgroundColor: "rgba(59, 130, 246, 0.3)",
-            borderColor: "rgba(59, 130, 246, 0.6)"
-          }}
+          className="relative p-4 rounded-full text-white/80 group overflow-hidden"
+          whileHover={{ scale: 1.1, y: -2 }}
           whileTap={{ scale: 0.9 }}
-          animate={{ y: [0, 10, 0] }}
-          transition={{ y: { duration: 2, repeat: Infinity } }}
+          animate={{ y: [0, 8, 0] }}
+          transition={{
+            y: { duration: 2, repeat: Infinity, ease: "easeInOut" },
+            type: "spring",
+            stiffness: 300
+          }}
         >
-          <ArrowDown size={24} />
-          <div className="absolute inset-0 rounded-full bg-blue-400/20 opacity-0 group-hover:opacity-100 transition-opacity blur-sm" />
+          {/* Glassmorphism Background */}
+          <div className="absolute inset-0 bg-white/5 backdrop-blur-xl border border-white/20 group-hover:border-white/40 transition-colors">
+            <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5" />
+          </div>
+
+          {/* Icon */}
+          <div className="relative z-10">
+            <ArrowDown size={20} />
+          </div>
+
+          {/* Pulse Effect */}
+          <motion.div
+            className="absolute inset-0 bg-blue-500/20 rounded-full"
+            animate={{
+              scale: [1, 1.5, 1],
+              opacity: [0.5, 0, 0.5]
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
         </motion.button>
       </motion.div>
     </section>

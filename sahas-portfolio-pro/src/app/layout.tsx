@@ -10,7 +10,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Sahas Eashan | Electronic & Telecommunication Engineer",
-  description: "Electronic & Telecommunication Engineering student at University of Moratuwa. Passionate about robotics, AI, and hardware design. CGPA: 3.94/4.0",
+  description: "Electronic & Telecommunication Engineering student at University of Moratuwa. Passionate about robotics, AI, and hardware design. CGPA: 3.92/4.0",
   keywords: [
     "Sahas Eashan",
     "Electronic Engineering",

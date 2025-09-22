@@ -48,7 +48,7 @@ export const LEADERSHIP_ROLES: Experience[] = [
   {
     organization: "Electronic Club UoM",
     title: "Committee Member (Operations) - Main Pillar",
-    period: "Feb 2024 – Present",
+    period: "Feb 2024 – Aug 2024",
     description: "Main pillar operations, project logistics, and STEM workshop facilitation.",
     type: "leadership",
     image: "/images/eclub.webp",
@@ -70,7 +70,7 @@ export const EDUCATION: Experience[] = [
     organization: "University of Moratuwa",
     title: "B.Sc. (Hons) Electronic & Telecommunication Engineering",
     period: "2023 – 2027",
-    description: "Pursuing undergraduate degree with CGPA: 3.94/4.0. Relevant courses include Circuits & Signals, Communication Systems, Robotics Design, Engineering Design Project, and Computer Organization.",
+    description: "Pursuing undergraduate degree with CGPA: 3.92/4.0. Relevant courses include Circuits & Signals, Communication Systems, Robotics Design, Engineering Design Project, and Computer Organization.",
     type: "education",
     skills: ["Electronic Engineering", "Telecommunication", "Circuit Design", "Signal Processing", "Communication Systems"]
   }

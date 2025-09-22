@@ -10,7 +10,12 @@
       "Bash(npm run lint)",
       "WebSearch",
       "WebFetch(domain:github.com)",
-      "WebFetch(domain:linkedin.com)"
+      "WebFetch(domain:linkedin.com)",
+      "Bash(cp:*)",
+      "Bash(powershell:*)",
+      "Bash(del \"C:\\Users\\Cyborg\\Documents\\GitHub\\Fortfolio_Sahas\\sahas-portfolio-pro\\src\\app\\projects\\[id]\\generate.ts\")",
+      "Bash(npx tsc:*)",
+      "Bash(npx next:*)"
     ],
     "deny": [],
     "ask": []

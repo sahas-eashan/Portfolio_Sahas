@@ -98,23 +98,57 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="section-padding bg-gradient-main">
-      <div className="container-custom">
+    <section id="contact" className="relative min-h-screen overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 py-20 lg:py-32">
+      {/* Animated Grid Background */}
+      <div className="absolute inset-0 opacity-30">
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px)
+            `,
+            backgroundSize: '50px 50px',
+          }}
+        />
+      </div>
+
+      {/* Floating Particles */}
+      <div className="absolute inset-0 pointer-events-none">
+        {Array.from({ length: 15 }, (_, i) => (
+          <div
+            key={i}
+            className="absolute w-1 h-1 bg-blue-400/60 rounded-full animate-pulse"
+            style={{
+              left: Math.random() * 100 + '%',
+              top: Math.random() * 100 + '%',
+              animationDelay: Math.random() * 2 + 's',
+              animationDuration: Math.random() * 3 + 2 + 's'
+            }}
+          />
+        ))}
+      </div>
+
+      <div className="relative z-10 w-full flex flex-col items-center justify-center px-8 lg:px-16">
         <motion.div
-          className="text-center space-element"
+          className="text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-heading gradient-text mb-4">Get In Touch</h2>
-          <p className="text-body text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
+          <h2 className="text-5xl md:text-6xl font-bold mb-8">
+            <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent">
+              Get In Touch
+            </span>
+          </h2>
+          <p className="text-xl text-slate-300 max-w-3xl mx-auto">
             I'm always interested in discussing new opportunities, collaborations, and innovative projects.
             Whether you're looking for an intern, a project partner, or just want to connect, feel free to reach out!
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 space-element">
+        <div className="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Information */}
           <motion.div
             className="space-y-6"
