@@ -117,10 +117,10 @@ const ProjectDetailView = ({ project, onClose }) => {
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="relative p-8 bg-white/80 backdrop-blur-sm border-b border-white/30">
+        <div className="relative p-8 lg:px-12 bg-white/80 backdrop-blur-sm border-b border-white/30">
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 text-gray-600 hover:text-gray-800 transition-all duration-200 p-2 hover:bg-white/50 rounded-full backdrop-blur-sm"
+            className="absolute top-4 right-4 text-gray-600 hover:text-gray-800 transition-all duration-200 p-2 hover:bg-white/50 rounded-full backdrop-blur-sm z-10"
           >
             <ArrowUpRight className="rotate-45" size={20} />
           </button>
@@ -166,7 +166,7 @@ const ProjectDetailView = ({ project, onClose }) => {
         </div>
 
         {/* Content */}
-        <div className="px-12 py-8 bg-white/70 backdrop-blur-sm">
+        <div className="px-8 lg:px-12 py-8 bg-white/70 backdrop-blur-sm">
           {/* Project Details - 2 Column Grid at Top */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
             <div className="space-y-4">
@@ -243,16 +243,15 @@ const ProjectDetailView = ({ project, onClose }) => {
           {/* Main Content */}
           <div className="space-y-8">
               {/* Project Narrative */}
-              <div className="space-y-6 pl-4">
+              <div className="space-y-6">
                 {project.narrative.map((paragraph, index) => (
                   <p key={index} className="text-gray-700 leading-relaxed text-lg first-letter:text-3xl first-letter:font-bold first-letter:text-blue-600 first-letter:float-left first-letter:mr-2 first-letter:mt-0.5">
                     {paragraph}
                   </p>
                 ))}
               </div>
-
               {/* Detailed Content - 2 column layout with margin */}
-              <div className="prose prose-gray max-w-none pl-4 ml-4">
+              <div className="prose prose-gray max-w-none">
                 <div className="columns-1 md:columns-2 gap-8 text-gray-700">
                   {paragraphs.map((paragraph, index) => {
                     const totalMedia = project.media?.length || 0;
@@ -474,7 +473,7 @@ const Projects = () => {
     <>
       <section
         id="projects"
-        className="relative min-h-screen overflow-hidden py-20 lg:py-32"
+        className="relative min-h-screen overflow-hidden"
         style={{
           background: 'linear-gradient(135deg, #0a0a1a 0%, #1a1a3e 25%, #2d1b69 50%, #1a1a3e 75%, #0a0a1a 100%)',
         }}
@@ -485,90 +484,93 @@ const Projects = () => {
           <div className="absolute bottom-32 right-1/4 w-96 h-96 bg-gradient-to-r from-purple-400/15 to-pink-600/15 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
         </div>
 
-        <div className="relative z-10 w-full flex flex-col items-center justify-center px-8 lg:px-16">
-          {/* Hero Section */}
-          <motion.div
-            className="text-center mb-12 max-w-5xl"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="text-6xl md:text-7xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent">
-                Innovation Journey
-              </span>
-            </h2>
-            <p className="text-xl md:text-2xl text-slate-300 leading-relaxed">
-              Exploring the convergence of <span className="text-cyan-400 font-semibold">Artificial Intelligence</span>,
-              <span className="text-blue-400 font-semibold"> Autonomous Robotics</span>, and
-              <span className="text-purple-400 font-semibold"> Sustainable Technology</span>
-              <br />through award-winning projects and international recognition
-            </p>
-          </motion.div>
+        <div className="relative z-10 w-full flex flex-col items-center px-8 lg:px-16 pt-20 lg:pt-24">
+          {/* Top Content Wrapper */}
+          <div className="w-full flex flex-col items-center gap-8">
+            {/* Hero Section */}
+            <motion.div
+              className="text-center max-w-5xl"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <h2 className="text-6xl md:text-7xl font-bold mb-6">
+                <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent">
+                  Innovation Journey
+                </span>
+              </h2>
+              <p className="text-xl md:text-2xl text-slate-300 leading-relaxed">
+                Exploring the convergence of <span className="text-cyan-400 font-semibold">Artificial Intelligence</span>,
+                <span className="text-blue-400 font-semibold"> Autonomous Robotics</span>, and
+                <span className="text-purple-400 font-semibold"> Sustainable Technology</span>
+                <br />through award-winning projects and international recognition
+              </p>
+            </motion.div>
 
-          {/* Category Filters */}
-          <motion.div
-            className="w-full max-w-6xl"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-          >
-            <div className="flex flex-wrap justify-center gap-3 mb-12">
-              {PROJECT_CATEGORIES.map((category) => (
-                <button
-                  key={category.id}
-                  onClick={() => setSelectedCategory(category.id)}
-                  className={`group px-5 py-2.5 rounded-xl font-medium transition-all duration-300 border backdrop-blur-sm ${
-                    selectedCategory === category.id
-                      ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white border-blue-400 shadow-xl shadow-blue-500/25'
-                      : 'bg-slate-800/50 text-slate-300 border-slate-600/50 hover:border-blue-400/50 hover:bg-slate-700/70 hover:text-white'
-                  }`}
-                >
-                  <span className="mr-2 text-xl group-hover:scale-110 transition-transform inline-block">
-                    {category.icon}
-                  </span>
-                  {category.label} ({category.count})
-                </button>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Projects Grid */}
-          <motion.div
-            className="w-full max-w-7xl"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={selectedCategory}
-                className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.5 }}
-              >
-                {filteredProjects.map((project, index) => (
-                  <motion.div
-                    key={project.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
+            {/* Category Filters */}
+            <motion.div
+              className="w-full max-w-6xl"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            >
+              <div className="flex flex-wrap justify-center gap-3">
+                {PROJECT_CATEGORIES.map((category) => (
+                  <button
+                    key={category.id}
+                    onClick={() => setSelectedCategory(category.id)}
+                    className={`group px-5 py-2.5 rounded-xl font-medium transition-all duration-300 border backdrop-blur-sm ${
+                      selectedCategory === category.id
+                        ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white border-blue-400 shadow-xl shadow-blue-500/25'
+                        : 'bg-slate-800/50 text-slate-300 border-slate-600/50 hover:border-blue-400/50 hover:bg-slate-700/70 hover:text-white'
+                    }`}
                   >
-                    <ProjectCard project={project} onViewDetails={handleViewDetails} />
-                  </motion.div>
+                    <span className="mr-2 text-xl group-hover:scale-110 transition-transform inline-block">
+                      {category.icon}
+                    </span>
+                    {category.label} ({category.count})
+                  </button>
                 ))}
-              </motion.div>
-            </AnimatePresence>
-          </motion.div>
+              </div>
+            </motion.div>
+
+            {/* Projects Grid */}
+            <motion.div
+              className="w-full max-w-7xl"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={selectedCategory}
+                  className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  {filteredProjects.map((project, index) => (
+                    <motion.div
+                      key={project.id}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6, delay: index * 0.1 }}
+                    >
+                      <ProjectCard project={project} onViewDetails={handleViewDetails} />
+                    </motion.div>
+                  ))}
+                </motion.div>
+              </AnimatePresence>
+            </motion.div>
+          </div>
 
           {/* Call to Action */}
           <motion.div
-            className="mt-16 text-center"
+            className="text-center mt-8 mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
