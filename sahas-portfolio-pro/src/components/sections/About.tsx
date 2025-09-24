@@ -113,61 +113,54 @@ const About = () => {
             transition={{ duration: 0.8 }}
           >
             {/* Education Card */}
-            <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-8 hover:bg-white/8 transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-blue-500/10">
+            <div className="bg-slate-900/40 backdrop-blur-sm border border-slate-700/50 rounded-lg p-8 hover:bg-slate-900/60 transition-all duration-300">
               <div className="flex items-center gap-3 mb-6">
-                <div className="p-3 bg-blue-500/20 rounded-xl border border-blue-500/30">
-                  <GraduationCap className="w-6 h-6 text-blue-300" />
-                </div>
-                <h3 className="text-2xl font-bold text-white">Education</h3>
+                <GraduationCap className="w-6 h-6 text-cyan-400" />
+                <h3 className="text-xl font-semibold text-white">Education</h3>
               </div>
 
               <div className="space-y-4">
-                <h4 className="text-xl font-bold text-white leading-tight">
+                <h4 className="text-lg font-semibold text-white leading-tight">
                   B.Sc. Electronic & Telecommunication Engineering
                 </h4>
 
                 <div className="space-y-2">
-                  <p className="text-cyan-300 font-semibold">University of Moratuwa</p>
-                  <p className="text-blue-300">2023 – 2027</p>
+                  <p className="text-cyan-400 font-medium">University of Moratuwa</p>
+                  <p className="text-gray-400 text-sm">2023 – 2027</p>
                 </div>
 
-                <div className="inline-block px-4 py-2 bg-emerald-500/20 border border-emerald-500/30 rounded-full">
-                  <p className="text-emerald-300 font-bold">CGPA: 3.92/4.0</p>
+                <div className="inline-block px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 rounded-md">
+                  <p className="text-emerald-400 text-sm font-medium">CGPA: 3.92/4.0</p>
                 </div>
 
-                <p className="text-gray-300 leading-relaxed text-sm">
-                  First Class Honours candidate specializing in{" "}
-                  <span className="text-blue-300 font-medium">electronics</span>,{" "}
-                  <span className="text-cyan-300 font-medium">robotics</span>, and{" "}
-                  <span className="text-purple-300 font-medium">signal processing</span>.
+                <p className="text-gray-400 leading-relaxed text-sm">
+                  First Class Honours candidate specializing in electronics, robotics, and signal processing.
                 </p>
               </div>
             </div>
 
             {/* Certifications Card */}
-            <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-8 hover:bg-white/8 transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-purple-500/10">
+            <div className="bg-slate-900/40 backdrop-blur-sm border border-slate-700/50 rounded-lg p-8 hover:bg-slate-900/60 transition-all duration-300">
               <div className="flex items-center gap-3 mb-6">
-                <div className="p-3 bg-purple-500/20 rounded-xl border border-purple-500/30">
-                  <Award className="w-6 h-6 text-purple-300" />
-                </div>
-                <h3 className="text-2xl font-bold text-white">Certifications</h3>
+                <Award className="w-6 h-6 text-cyan-400" />
+                <h3 className="text-xl font-semibold text-white">Certifications</h3>
               </div>
 
               <div className="space-y-4">
                 <div className="space-y-3">
-                  <div className="border-l-4 border-blue-400 pl-4">
-                    <h4 className="text-white font-semibold">Mathematics for Machine Learning</h4>
-                    <p className="text-blue-300 text-sm">Imperial College London • Dec 2024</p>
+                  <div className="border-l-2 border-cyan-400/40 pl-4">
+                    <h4 className="text-white font-medium">Mathematics for Machine Learning</h4>
+                    <p className="text-gray-400 text-sm">Imperial College London • Dec 2024</p>
                   </div>
 
-                  <div className="border-l-4 border-cyan-400 pl-4">
-                    <h4 className="text-white font-semibold">Deep Learning Specialization</h4>
-                    <p className="text-cyan-300 text-sm">DeepLearning.AI • Jun 2024</p>
+                  <div className="border-l-2 border-cyan-400/40 pl-4">
+                    <h4 className="text-white font-medium">Deep Learning Specialization</h4>
+                    <p className="text-gray-400 text-sm">DeepLearning.AI • Jun 2024</p>
                   </div>
 
-                  <div className="border-l-4 border-purple-400 pl-4">
-                    <h4 className="text-white font-semibold">Embedded Systems & AI</h4>
-                    <p className="text-purple-300 text-sm">UC Irvine • Ongoing</p>
+                  <div className="border-l-2 border-cyan-400/40 pl-4">
+                    <h4 className="text-white font-medium">Embedded Systems & AI</h4>
+                    <p className="text-gray-400 text-sm">UC Irvine • Ongoing</p>
                   </div>
                 </div>
               </div>
@@ -208,18 +201,15 @@ const About = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                whileHover={{ y: -5, scale: 1.02 }}
-                className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 hover:bg-white/8 transition-all duration-300 hover:shadow-2xl hover:shadow-cyan-500/10"
+                className="bg-slate-900/40 backdrop-blur-sm border border-slate-700/50 rounded-lg p-6 hover:bg-slate-900/60 hover:border-cyan-400/30 transition-all duration-300"
               >
-                <div className="flex items-start gap-4 mb-4">
-                  <div className="p-3 bg-cyan-500/20 rounded-xl border border-cyan-500/30">
-                    <Users className="w-5 h-5 text-cyan-300" />
-                  </div>
+                <div className="flex items-start gap-3 mb-3">
+                  <Users className="w-5 h-5 text-cyan-400 mt-1 flex-shrink-0" />
                   <div className="flex-1 min-w-0">
-                    <h4 className="font-bold text-white text-base mb-3 leading-tight">{role.title}</h4>
-                    <div className="space-y-2">
-                      <p className="text-cyan-300 font-medium text-sm">{role.organization}</p>
-                      <p className="text-blue-300 text-sm">{role.period}</p>
+                    <h4 className="font-semibold text-white text-sm mb-3 leading-tight">{role.title}</h4>
+                    <div className="space-y-1">
+                      <p className="text-cyan-400 font-medium text-sm">{role.organization}</p>
+                      <p className="text-gray-400 text-sm">{role.period}</p>
                     </div>
                   </div>
                 </div>
@@ -256,10 +246,9 @@ const About = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.05 }}
-                whileHover={{ scale: 1.05, y: -3 }}
-                className="px-4 py-2 bg-purple-500/10 border border-purple-400/30 rounded-full hover:bg-purple-500/20 hover:border-purple-400/50 transition-all duration-300"
+                className="px-4 py-2 bg-slate-900/40 border border-slate-700/50 rounded-md hover:bg-slate-900/60 hover:border-cyan-400/30 transition-all duration-300"
               >
-                <span className="text-sm font-medium text-purple-200 hover:text-purple-100 transition-colors">
+                <span className="text-sm font-medium text-gray-300 hover:text-cyan-400 transition-colors">
                   {activity}
                 </span>
               </motion.div>
