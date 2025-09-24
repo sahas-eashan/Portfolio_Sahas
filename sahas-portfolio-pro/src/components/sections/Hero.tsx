@@ -238,7 +238,11 @@ const Hero = () => {
                 <span className="w-3 h-3 bg-cyan-400 rounded-full animate-pulse" />
                 Research Associate at RoboticGen Labs
               </div>
-              <p className="text-lg text-blue-200/90 ml-6">
+              <div className="flex items-center gap-3 text-lg text-blue-200/90 ml-6">
+                <span className="w-2 h-2 bg-blue-300 rounded-full" />
+                Co-Founder & CTO at Bioplastic Revolution
+              </div>
+              <p className="text-base text-gray-300/90 ml-6">
                 Electronic & Telecommunication Engineering Student
               </p>
             </motion.div>
@@ -262,7 +266,7 @@ const Hero = () => {
                 <span className="text-purple-400 font-semibold border-b-2 border-purple-400/50">
                   embedded systems
                 </span>
-                , and autonomous robotic solutions.
+                , and autonomous solutions, while exploring sustainable innovations like seaweed-based bioplastics.
               </p>
             </motion.div>
 
