@@ -115,18 +115,26 @@ const Contact = () => {
 
       {/* Floating Particles */}
       <div className="absolute inset-0 pointer-events-none">
-        {Array.from({ length: 15 }, (_, i) => (
-          <div
-            key={i}
-            className="absolute w-1 h-1 bg-blue-400/60 rounded-full animate-pulse"
-            style={{
-              left: Math.random() * 100 + '%',
-              top: Math.random() * 100 + '%',
-              animationDelay: Math.random() * 2 + 's',
-              animationDuration: Math.random() * 3 + 2 + 's'
-            }}
-          />
-        ))}
+        {Array.from({ length: 15 }, (_, i) => {
+          // Use deterministic values based on index to avoid hydration mismatch
+          const left = (i * 7.13 * 47) % 100;
+          const top = (i * 11.37 * 23) % 100;
+          const delay = (i * 0.13) % 2;
+          const duration = 2 + (i * 0.2) % 3;
+
+          return (
+            <div
+              key={i}
+              className="absolute w-1 h-1 bg-blue-400/60 rounded-full animate-pulse"
+              style={{
+                left: left + '%',
+                top: top + '%',
+                animationDelay: delay + 's',
+                animationDuration: duration + 's'
+              }}
+            />
+          );
+        })}
       </div>
 
       <div className="relative z-10 w-full flex flex-col items-center justify-center px-8 lg:px-16">

@@ -8,6 +8,7 @@ const nextConfig: NextConfig = {
   },
   basePath: process.env.NODE_ENV === 'production' ? '/sahas-portfolio-pro' : '',
   assetPrefix: process.env.NODE_ENV === 'production' ? '/sahas-portfolio-pro/' : '',
+  outputFileTracingRoot: __dirname,
 };
 
 export default nextConfig;

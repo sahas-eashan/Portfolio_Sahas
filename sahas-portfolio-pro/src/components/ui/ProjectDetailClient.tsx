@@ -17,7 +17,7 @@ export default function ProjectDetailClient({ project }: ProjectDetailClientProp
   // Parse project content into smaller paragraph chunks for 2-column layout
   const parseProjectContent = (detail: string) => {
     const sections = detail.split('##').filter(section => section.trim());
-    const parsedContent = [];
+    const parsedContent: any[] = [];
 
     sections.forEach(section => {
       const lines = section.trim().split('\n');
@@ -297,19 +297,17 @@ export default function ProjectDetailClient({ project }: ProjectDetailClientProp
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             {/* Achievements */}
-            {project.achievements && project.achievements.length > 0 && (
+            {project.achievement && (
               <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
                   <Award className="w-5 h-5 text-yellow-600" />
                   Key Achievements
                 </h3>
                 <ul className="space-y-3">
-                  {project.achievements.map((achievement, index) => (
-                    <li key={index} className="flex items-start gap-2 text-gray-700">
-                      <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0" />
-                      <span className="text-sm leading-relaxed">{achievement}</span>
-                    </li>
-                  ))}
+                  <li className="flex items-start gap-2 text-gray-700">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0" />
+                    <span className="text-sm leading-relaxed">{project.achievement}</span>
+                  </li>
                 </ul>
               </div>
             )}

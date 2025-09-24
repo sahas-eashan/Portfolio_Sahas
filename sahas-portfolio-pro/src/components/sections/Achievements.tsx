@@ -1,6 +1,6 @@
-'use client';
+﻿'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, type FC } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Trophy, Medal, Award, Star, Calendar, X } from 'lucide-react';
 import Card from '@/components/ui/Card';
@@ -9,7 +9,15 @@ import { ACHIEVEMENTS } from '@/data/achievements';
 import { generateSeededPositions } from '@/utils/seededRandom';
 
 // Image Modal Component
-const ImageModal = ({ image, title, isOpen, onClose }) => {
+
+type ImageModalProps = {
+  image: string;
+  title: string;
+  isOpen: boolean;
+  onClose: () => void;
+};
+
+const ImageModal: FC<ImageModalProps> = ({ image, title, isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
@@ -43,15 +51,16 @@ const ImageModal = ({ image, title, isOpen, onClose }) => {
             alt={title}
             className="w-full h-auto max-h-[70vh] object-contain rounded-lg"
             onError={(e) => {
-              e.target.style.display = 'none';
-              e.target.nextSibling.style.display = 'flex';
+              const target = e.target as HTMLImageElement;
+              target.style.display = 'none';
+              (target.nextSibling as HTMLElement).style.display = 'flex';
             }}
           />
 
           {/* Fallback for broken images */}
           <div className="hidden w-full h-64 bg-gradient-to-br from-blue-100 to-purple-100 rounded-lg items-center justify-center">
             <div className="text-center">
-              <div className="text-4xl mb-2">🏆</div>
+              <div className="text-4xl mb-2">ðŸ†</div>
               <p className="text-gray-600">{title}</p>
               <p className="text-gray-500 text-sm mt-1">Image not available</p>
             </div>
@@ -70,7 +79,7 @@ const ImageModal = ({ image, title, isOpen, onClose }) => {
 const Achievements = () => {
   const [isMounted, setIsMounted] = useState(false);
   const [floatingElements, setFloatingElements] = useState<any[]>([]);
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImage, setSelectedImage] = useState<{ src: string; title: string } | null>(null);
 
   useEffect(() => {
     setIsMounted(true);

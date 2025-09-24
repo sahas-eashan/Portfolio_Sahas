@@ -90,26 +90,26 @@ export default function ProjectsHome() {
       <motion.div
         className={
           selectedCat === "robotics"
-            ? "flex gap-8 overflow-x-auto pb-8 snap-x snap-mandatory scrollbar-hide"
-            : "grid sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto"
+            ? "flex gap-6 overflow-x-auto pb-8 snap-x snap-mandatory scrollbar-hide"
+            : "grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto"
         }
         layout
       >
         {filteredProjects.map((project, idx) => {
           const firstImage = project.media?.find(m => m.type === "image");
           const category = PROJECT_CATEGORIES.find(cat => cat.id === project.category);
-          
+
           return (
             <motion.div
               key={project.id}
-              className={`group relative bg-white/5 rounded-3xl shadow-2xl transition-all duration-500 hover:shadow-cyan-500/20 backdrop-blur-sm border border-white/10 overflow-hidden cursor-pointer ${
-                selectedCat === "robotics" ? "min-w-[380px] max-w-[420px] snap-center" : ""
+              className={`group relative bg-white/5 rounded-2xl shadow-2xl transition-all duration-500 hover:shadow-cyan-500/20 backdrop-blur-sm border border-white/10 overflow-hidden cursor-pointer ${
+                selectedCat === "robotics" ? "min-w-[320px] max-w-[360px] snap-center" : ""
               }`}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: idx * 0.1 }}
-              whileHover={{ 
-                scale: 1.03, 
+              whileHover={{
+                scale: 1.03,
                 rotateY: 2,
                 boxShadow: "0 25px 50px rgba(34, 211, 238, 0.15)"
               }}
@@ -119,7 +119,7 @@ export default function ProjectsHome() {
               }}
             >
               {/* Image Section */}
-              <div className="relative h-56 overflow-hidden">
+              <div className="relative h-36 overflow-hidden">
                 {firstImage ? (
                   <>
                     <img
@@ -166,61 +166,61 @@ export default function ProjectsHome() {
               </div>
 
               {/* Content Section */}
-              <div className="p-6 relative">
+              <div className="p-4 relative">
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   layoutId={`hover-bg-${project.id}`}
                 />
-                
+
                 <div className="relative z-10">
-                  <h3 className="font-bold text-xl text-white mb-3 group-hover:text-cyan-300 transition-colors duration-300">
+                  <h3 className="font-bold text-base text-white mb-2 group-hover:text-cyan-300 transition-colors duration-300 line-clamp-2">
                     {project.title}
                   </h3>
-                  
-                  <p className="text-gray-300 text-sm mb-4 leading-relaxed line-clamp-3">
+
+                  <p className="text-gray-300 text-xs mb-3 leading-relaxed line-clamp-2">
                     {project.description}
                   </p>
 
                   {/* Tech Stack */}
                   {project.tech && (
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {project.tech.slice(0, 3).map(tech => (
+                    <div className="flex flex-wrap gap-1.5 mb-3">
+                      {project.tech.slice(0, 2).map(tech => (
                         <span
                           key={tech}
-                          className="px-2 py-1 bg-gradient-to-r from-cyan-400/10 to-purple-400/10 text-cyan-200 border border-cyan-400/20 rounded-lg text-xs font-medium"
+                          className="px-2 py-0.5 bg-gradient-to-r from-cyan-400/10 to-purple-400/10 text-cyan-200 border border-cyan-400/20 rounded-md text-xs font-medium"
                         >
                           {tech}
                         </span>
                       ))}
-                      {project.tech.length > 3 && (
-                        <span className="px-2 py-1 bg-white/5 text-gray-400 rounded-lg text-xs font-medium">
-                          +{project.tech.length - 3} more
+                      {project.tech.length > 2 && (
+                        <span className="px-2 py-0.5 bg-white/5 text-gray-400 rounded-md text-xs font-medium">
+                          +{project.tech.length - 2}
                         </span>
                       )}
                     </div>
                   )}
 
                   {/* Action Buttons */}
-                  <div className="flex gap-3 mt-4">
+                  <div className="flex gap-2 mt-3">
                     <motion.button
-                      className="flex-1 px-4 py-2 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-xl font-bold text-sm hover:from-cyan-400 hover:to-blue-400 transition-all duration-300"
+                      className="flex-1 px-3 py-1.5 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-lg font-bold text-xs hover:from-cyan-400 hover:to-blue-400 transition-all duration-300"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
                       View Details
                     </motion.button>
-                    
+
                     {project.github && (
                       <motion.a
                         href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="px-4 py-2 bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-xl font-bold text-sm hover:from-green-400 hover:to-emerald-400 transition-all duration-300"
+                        className="px-3 py-1.5 bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-lg font-bold text-xs hover:from-green-400 hover:to-emerald-400 transition-all duration-300"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         onClick={e => e.stopPropagation()}
                       >
-                        GitHub
+                        Code
                       </motion.a>
                     )}
                   </div>

@@ -15,7 +15,12 @@
       "Bash(powershell:*)",
       "Bash(del \"C:\\Users\\Cyborg\\Documents\\GitHub\\Fortfolio_Sahas\\sahas-portfolio-pro\\src\\app\\projects\\[id]\\generate.ts\")",
       "Bash(npx tsc:*)",
-      "Bash(npx next:*)"
+      "Bash(npx next:*)",
+      "Bash(timeout 60 npx next build)",
+      "mcp__ide__getDiagnostics",
+      "Bash(cat:*)",
+      "Bash(lsof:*)"
+
     ],
     "deny": [],
     "ask": []
