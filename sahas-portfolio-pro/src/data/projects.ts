@@ -1670,7 +1670,7 @@ export const PROJECT_CATEGORIES: ProjectCategory[] = [
 
     label: "All Projects",
 
-    icon: "*",
+    icon: "⭐",
 
     accent: "from-blue-500 to-purple-500",
 
@@ -1682,9 +1682,9 @@ export const PROJECT_CATEGORIES: ProjectCategory[] = [
 
     id: "ai",
 
-    label: "AI & Machine Learning", 
+    label: "AI & Machine Learning",
 
-    icon: "AI",
+    icon: "🧠",
 
     accent: "from-purple-500 to-pink-500",
 
@@ -1698,7 +1698,7 @@ export const PROJECT_CATEGORIES: ProjectCategory[] = [
 
     label: "Robotics & Automation",
 
-    icon: "RB", 
+    icon: "🤖",
 
     accent: "from-blue-500 to-cyan-500",
 
@@ -1712,9 +1712,9 @@ export const PROJECT_CATEGORIES: ProjectCategory[] = [
 
     label: "IoT & Embedded Systems",
 
-    icon: "IO",
+    icon: "⚡",
 
-    accent: "from-green-500 to-teal-500", 
+    accent: "from-green-500 to-teal-500",
 
     count: getCategoryCount("iot")
 
@@ -1726,7 +1726,7 @@ export const PROJECT_CATEGORIES: ProjectCategory[] = [
 
     label: "Sustainability & Innovation",
 
-    icon: "SU",
+    icon: "🌱",
 
     accent: "from-green-400 to-emerald-500",
 

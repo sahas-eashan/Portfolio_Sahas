@@ -109,7 +109,7 @@ const ProjectDetailView = ({ project, onClose }) => {
       onClick={onClose}
     >
       <motion.div
-        className="w-full max-w-6xl max-h-[90vh] bg-white/95 backdrop-blur-xl rounded-2xl overflow-hidden shadow-2xl border border-white/20 overflow-y-auto"
+        className="w-full max-w-6xl max-h-[90vh] bg-white/95 backdrop-blur-xl rounded-lg overflow-hidden shadow-2xl border border-white/20 overflow-y-auto"
         initial={{ scale: 0.8, opacity: 0, y: 50 }}
         animate={{ scale: 1, opacity: 1, y: 0 }}
         exit={{ scale: 0.8, opacity: 0, y: 50 }}
@@ -166,7 +166,7 @@ const ProjectDetailView = ({ project, onClose }) => {
         </div>
 
         {/* Content */}
-        <div className="p-8 bg-white/70 backdrop-blur-sm">
+        <div className="px-12 py-8 bg-white/70 backdrop-blur-sm">
           {/* Project Details - 2 Column Grid at Top */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
             <div className="space-y-4">
@@ -243,16 +243,16 @@ const ProjectDetailView = ({ project, onClose }) => {
           {/* Main Content */}
           <div className="space-y-8">
               {/* Project Narrative */}
-              <div className="space-y-6">
+              <div className="space-y-6 pl-4">
                 {project.narrative.map((paragraph, index) => (
-                  <p key={index} className="text-gray-700 leading-relaxed text-lg first-letter:text-4xl first-letter:font-bold first-letter:text-blue-600 first-letter:float-left first-letter:mr-2 first-letter:mt-1">
+                  <p key={index} className="text-gray-700 leading-relaxed text-lg first-letter:text-3xl first-letter:font-bold first-letter:text-blue-600 first-letter:float-left first-letter:mr-2 first-letter:mt-0.5">
                     {paragraph}
                   </p>
                 ))}
               </div>
 
               {/* Detailed Content - 2 column layout with margin */}
-              <div className="prose prose-gray max-w-none ml-8">
+              <div className="prose prose-gray max-w-none pl-4 ml-4">
                 <div className="columns-1 md:columns-2 gap-8 text-gray-700">
                   {paragraphs.map((paragraph, index) => {
                     const totalMedia = project.media?.length || 0;
@@ -330,7 +330,7 @@ const ProjectCard = ({ project, onViewDetails }) => {
     >
       {/* Hero Image Section */}
       {project.media?.[0] && (
-        <div className="relative h-48 overflow-hidden">
+        <div className="relative h-32 overflow-hidden">
           {!imageError ? (
             <img
               src={project.media[0].src}
@@ -341,43 +341,43 @@ const ProjectCard = ({ project, onViewDetails }) => {
           ) : (
             <div className="w-full h-full bg-gradient-to-br from-blue-500/20 to-purple-600/20 flex items-center justify-center">
               <div className="text-center">
-                <div className="text-4xl mb-2">
-                  {project.category === 'ai' ? '🧠' : 
+                <div className="text-3xl mb-1">
+                  {project.category === 'ai' ? '🧠' :
                    project.category === 'robotics' ? '🤖' :
-                   project.category === 'iot' ? '⚡' : 
+                   project.category === 'iot' ? '⚡' :
                    project.category === 'sustainability' ? '🌱' : '🚀'}
                 </div>
-                <p className="text-slate-400 text-sm">{project.title}</p>
+                <p className="text-slate-400 text-xs">{project.title}</p>
               </div>
             </div>
           )}
-          
+
           {/* Overlay Gradient */}
           <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent" />
-          
+
           {/* Status Indicators */}
-          <div className="absolute top-4 right-4 flex items-center gap-2">
+          <div className="absolute top-2 right-2 flex items-center gap-2">
             {project.featured && (
-              <div className="bg-yellow-500/20 text-yellow-300 px-2 py-1 rounded-lg backdrop-blur-sm border border-yellow-500/30">
-                <Award size={16} />
+              <div className="bg-yellow-500/20 text-yellow-300 p-1 rounded backdrop-blur-sm border border-yellow-500/30">
+                <Award size={12} />
               </div>
             )}
-            <div className={`w-3 h-3 rounded-full ${
+            <div className={`w-2 h-2 rounded-full ${
               project.status === 'completed' ? 'bg-emerald-400' :
               project.status === 'ongoing' ? 'bg-blue-400' : 'bg-slate-400'
             } shadow-lg`} />
           </div>
 
           {/* Quick Stats */}
-          <div className="absolute bottom-4 left-4 flex items-center gap-4 text-sm text-slate-300">
+          <div className="absolute bottom-2 left-2 flex items-center gap-2 text-xs text-slate-300">
             <div className="flex items-center gap-1">
-              <Calendar size={14} />
+              <Calendar size={12} />
               <span>{project.year}</span>
             </div>
             {project.location && (
               <div className="flex items-center gap-1">
-                <MapPin size={14} />
-                <span className="truncate max-w-20">{project.location}</span>
+                <MapPin size={12} />
+                <span className="truncate max-w-16">{project.location}</span>
               </div>
             )}
           </div>
@@ -385,11 +385,11 @@ const ProjectCard = ({ project, onViewDetails }) => {
       )}
 
       {/* Content Section */}
-      <div className="p-6 space-y-4">
+      <div className="p-4 space-y-3">
         {/* Header */}
-        <div className="space-y-2">
+        <div className="space-y-1">
           <div className="flex items-center justify-between">
-            <span className={`px-3 py-1 rounded-full text-xs font-medium ${
+            <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${
               project.category === 'ai' ? 'bg-purple-500/20 text-purple-300 border border-purple-500/30' :
               project.category === 'robotics' ? 'bg-blue-500/20 text-blue-300 border border-blue-500/30' :
               project.category === 'iot' ? 'bg-green-500/20 text-green-300 border border-green-500/30' :
@@ -398,93 +398,55 @@ const ProjectCard = ({ project, onViewDetails }) => {
             }`}>
               {project.category.toUpperCase()}
             </span>
-            <span className="text-slate-400 text-sm">{project.year}</span>
+            <span className="text-slate-400 text-xs">{project.year}</span>
           </div>
 
-          <h3 className="text-xl font-bold text-white group-hover:text-blue-300 transition-colors">
+          <h3 className="text-base font-bold text-white group-hover:text-blue-300 transition-colors line-clamp-2">
             {project.title}
           </h3>
-          
+
           {project.subtitle && (
-            <p className="text-blue-400 font-medium text-sm">{project.subtitle}</p>
+            <p className="text-blue-400 font-medium text-xs line-clamp-1">{project.subtitle}</p>
           )}
         </div>
 
         {/* Description */}
-        <p className="text-slate-300 text-sm leading-relaxed line-clamp-3">
+        <p className="text-slate-300 text-xs leading-relaxed line-clamp-2">
           {project.description}
         </p>
 
         {/* Achievement Badge */}
         {project.achievement && (
-          <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-3">
+          <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-2">
             <div className="flex items-center gap-2">
-              <Award size={16} className="text-emerald-400 flex-shrink-0" />
-              <span className="text-emerald-300 font-medium text-sm line-clamp-2">{project.achievement}</span>
+              <Award size={12} className="text-emerald-400 flex-shrink-0" />
+              <span className="text-emerald-300 font-medium text-xs line-clamp-1">{project.achievement}</span>
             </div>
           </div>
         )}
 
         {/* Technologies */}
-        <div className="flex flex-wrap gap-2">
-          {project.technologies.slice(0, 4).map((tech, index) => (
+        <div className="flex flex-wrap gap-1.5">
+          {project.technologies.slice(0, 3).map((tech, index) => (
             <span
               key={index}
-              className="px-2 py-1 bg-slate-700/50 text-slate-300 text-xs rounded-md border border-slate-600/30"
+              className="px-2 py-0.5 bg-slate-700/50 text-slate-300 text-xs rounded-md border border-slate-600/30"
             >
               {tech}
             </span>
           ))}
-          {project.technologies.length > 4 && (
-            <span className="px-2 py-1 bg-slate-700/30 text-slate-400 text-xs rounded-md">
-              +{project.technologies.length - 4} more
+          {project.technologies.length > 3 && (
+            <span className="px-2 py-0.5 bg-slate-700/30 text-slate-400 text-xs rounded-md">
+              +{project.technologies.length - 3}
             </span>
           )}
         </div>
 
-        {/* Team & Location Info */}
-        <div className="flex items-center gap-4 text-xs text-slate-400">
-          {project.team && (
-            <div className="flex items-center gap-1">
-              <Users size={12} />
-              <span>{project.team}</span>
-            </div>
-          )}
-          {project.location && (
-            <div className="flex items-center gap-1">
-              <MapPin size={12} />
-              <span>{project.location}</span>
-            </div>
-          )}
-        </div>
-
-        {/* Actions */}
+        {/* View Details Hint */}
         <div className="flex items-center justify-center pt-2 border-t border-slate-700/30">
-          <div className="flex items-center gap-6">
-            {project.github && (
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 text-slate-400 hover:text-blue-400 transition-colors"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <Github size={18} />
-                <span className="text-sm font-medium">Code</span>
-              </a>
-            )}
-            {project.demo && (
-              <a
-                href={project.demo}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 text-slate-400 hover:text-cyan-400 transition-colors"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <ExternalLink size={18} />
-                <span className="text-sm font-medium">Demo</span>
-              </a>
-            )}
+          <div className="flex items-center gap-2 text-slate-400 group-hover:text-blue-400 transition-colors">
+            <Eye size={14} />
+            <span className="text-xs font-medium">Click to view details</span>
           </div>
         </div>
       </div>
@@ -526,13 +488,13 @@ const Projects = () => {
         <div className="relative z-10 w-full flex flex-col items-center justify-center px-8 lg:px-16">
           {/* Hero Section */}
           <motion.div
-            className="text-center mb-16 max-w-5xl"
+            className="text-center mb-12 max-w-5xl"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-5xl md:text-7xl font-bold mb-8">
+            <h2 className="text-6xl md:text-7xl font-bold mb-6">
               <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent">
                 Innovation Journey
               </span>
@@ -540,31 +502,31 @@ const Projects = () => {
             <p className="text-xl md:text-2xl text-slate-300 leading-relaxed">
               Exploring the convergence of <span className="text-cyan-400 font-semibold">Artificial Intelligence</span>,
               <span className="text-blue-400 font-semibold"> Autonomous Robotics</span>, and
-              <span className="text-purple-400 font-semibold"> Sustainable Technology</span> 
+              <span className="text-purple-400 font-semibold"> Sustainable Technology</span>
               <br />through award-winning projects and international recognition
             </p>
           </motion.div>
 
           {/* Category Filters */}
           <motion.div
-            className="w-full max-w-6xl mb-16"
+            className="w-full max-w-6xl"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            <div className="flex flex-wrap justify-center gap-4 mb-12">
+            <div className="flex flex-wrap justify-center gap-3 mb-12">
               {PROJECT_CATEGORIES.map((category) => (
                 <button
                   key={category.id}
                   onClick={() => setSelectedCategory(category.id)}
-                  className={`group px-6 py-3 rounded-2xl font-medium transition-all duration-300 border backdrop-blur-sm ${
+                  className={`group px-5 py-2.5 rounded-xl font-medium transition-all duration-300 border backdrop-blur-sm ${
                     selectedCategory === category.id
                       ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white border-blue-400 shadow-xl shadow-blue-500/25'
                       : 'bg-slate-800/50 text-slate-300 border-slate-600/50 hover:border-blue-400/50 hover:bg-slate-700/70 hover:text-white'
                   }`}
                 >
-                  <span className="mr-3 text-lg group-hover:scale-110 transition-transform inline-block">
+                  <span className="mr-2 text-xl group-hover:scale-110 transition-transform inline-block">
                     {category.icon}
                   </span>
                   {category.label} ({category.count})
@@ -606,13 +568,13 @@ const Projects = () => {
 
           {/* Call to Action */}
           <motion.div
-            className="mt-20 text-center"
+            className="mt-16 text-center"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            <p className="text-slate-400 mb-6 text-lg">
+            <p className="text-slate-400 mb-6 text-xl">
               Interested in collaboration or have questions about any project?
             </p>
             <Link
