@@ -323,14 +323,14 @@ const ProjectCard = ({ project, onViewDetails }) => {
 
   return (
     <motion.div
-      className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-md border border-slate-700/50 hover:border-blue-500/50 transition-all duration-500 hover:bg-slate-800/70 cursor-pointer"
+      className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-md border border-slate-700/50 hover:border-blue-500/50 transition-all duration-500 hover:bg-slate-800/70 cursor-pointer"
       whileHover={{ y: -8, scale: 1.02 }}
       transition={{ duration: 0.3 }}
       onClick={() => onViewDetails(project)}
     >
       {/* Hero Image Section */}
       {project.media?.[0] && (
-        <div className="relative h-64 overflow-hidden">
+        <div className="relative h-48 overflow-hidden">
           {!imageError ? (
             <img
               src={project.media[0].src}
@@ -584,7 +584,7 @@ const Projects = () => {
             <AnimatePresence mode="wait">
               <motion.div
                 key={selectedCategory}
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
