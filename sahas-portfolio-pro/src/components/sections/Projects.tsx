@@ -116,201 +116,207 @@ const ProjectDetailView = ({ project, onClose }) => {
         transition={{ type: "spring", damping: 20, stiffness: 300 }}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Header */}
-        <div className="relative p-8 lg:px-12 bg-white/80 backdrop-blur-sm border-b border-white/30">
-          <button
-            onClick={onClose}
-            className="absolute top-4 right-4 text-gray-600 hover:text-gray-800 transition-all duration-200 p-2 hover:bg-white/50 rounded-full backdrop-blur-sm z-10"
-          >
-            <ArrowUpRight className="rotate-45" size={20} />
-          </button>
+        <div className="grid grid-cols-12 gap-x-4 py-8">
+          <div className="col-start-2 col-span-10">
 
-          <div className="space-y-4">
-            <div className="flex items-center gap-4 flex-wrap">
-              <span className={`px-3 py-1 rounded-full text-sm font-medium ${
-                project.category === 'ai' ? 'bg-purple-100 text-purple-700 border border-purple-200' :
-                project.category === 'robotics' ? 'bg-blue-100 text-blue-700 border border-blue-200' :
-                project.category === 'iot' ? 'bg-green-100 text-green-700 border border-green-200' :
-                project.category === 'sustainability' ? 'bg-emerald-100 text-emerald-700 border border-emerald-200' :
-                'bg-gray-100 text-gray-700 border border-gray-200'
-              }`}>
-                {project.category.toUpperCase()}
-              </span>
-              <span className="text-gray-600">{project.year}</span>
-              {project.location && (
-                <div className="flex items-center gap-1 text-gray-600">
-                  <MapPin size={16} />
-                  <span>{project.location}</span>
-                </div>
-              )}
-            </div>
+            {/* Header */}
+            <div className="relative border-b border-white/30 pb-8">
+              <button
+                onClick={onClose}
+                className="absolute top-0 right-0 text-gray-600 hover:text-gray-800 transition-all duration-200 p-2 hover:bg-white/50 rounded-full backdrop-blur-sm z-10"
+              >
+                <ArrowUpRight className="rotate-45" size={20} />
+              </button>
 
-            <h1 className="text-4xl font-bold text-gray-900">{project.title}</h1>
-            {project.subtitle && (
-              <p className="text-xl text-blue-600 font-medium">{project.subtitle}</p>
-            )}
-
-            <p className="text-lg text-gray-700 leading-relaxed">
-              {project.description}
-            </p>
-
-            {project.achievement && (
-              <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-4">
-                <div className="flex items-center gap-2">
-                  <Award size={20} className="text-emerald-600 flex-shrink-0" />
-                  <span className="text-emerald-700 font-medium">{project.achievement}</span>
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-
-        {/* Content */}
-        <div className="px-8 lg:px-12 py-8 bg-white/70 backdrop-blur-sm">
-          {/* Project Details - 2 Column Grid at Top */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-            <div className="space-y-4">
-              {project.team && (
-                <div className="flex items-center gap-3">
-                  <Users className="text-blue-600 flex-shrink-0" size={20} />
-                  <div>
-                    <p className="text-sm text-gray-600">Team Size</p>
-                    <p className="text-gray-900 font-medium">{project.team}</p>
-                  </div>
-                </div>
-              )}
-              {project.impact && (
-                <div className="flex items-center gap-3">
-                  <Zap className="text-yellow-600 flex-shrink-0" size={20} />
-                  <div>
-                    <p className="text-sm text-gray-600">Impact</p>
-                    <p className="text-gray-900 font-medium">{project.impact}</p>
-                  </div>
-                </div>
-              )}
-              {project.status && (
-                <div className="flex items-center gap-3">
-                  <div className={`w-3 h-3 rounded-full ${
-                    project.status === 'completed' ? 'bg-emerald-500' :
-                    project.status === 'ongoing' ? 'bg-blue-500' : 'bg-gray-400'
-                  }`} />
-                  <div>
-                    <p className="text-sm text-gray-600">Status</p>
-                    <p className="text-gray-900 font-medium capitalize">{project.status}</p>
-                  </div>
-                </div>
-              )}
-            </div>
-            <div className="space-y-4">
-              {project.duration && (
-                <div className="flex items-center gap-3">
-                  <Calendar className="text-green-600 flex-shrink-0" size={20} />
-                  <div>
-                    <p className="text-sm text-gray-600">Duration</p>
-                    <p className="text-gray-900 font-medium">{project.duration}</p>
-                  </div>
-                </div>
-              )}
-              <div>
-                <p className="text-sm text-gray-600 mb-2">Technologies</p>
-                <div className="flex flex-wrap gap-2">
-                  {project.technologies.map((tech, index) => (
-                    <span key={index} className="px-3 py-1 bg-blue-100 text-blue-700 text-sm rounded-lg">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-              {(project.github || project.demo) && (
-                <div className="flex gap-3 mt-4">
-                  {project.github && (
-                    <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700">
-                      <Github size={16} />
-                      Code
-                    </a>
-                  )}
-                  {project.demo && (
-                    <a href={project.demo} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500">
-                      <ExternalLink size={16} />
-                      Demo
-                    </a>
+              <div className="space-y-4">
+                <div className="flex items-center gap-4 flex-wrap">
+                  <span className={`px-3 py-1 rounded-full text-sm font-medium ${
+                    project.category === 'ai' ? 'bg-purple-100 text-purple-700 border border-purple-200' :
+                    project.category === 'robotics' ? 'bg-blue-100 text-blue-700 border border-blue-200' :
+                    project.category === 'iot' ? 'bg-green-100 text-green-700 border border-green-200' :
+                    project.category === 'sustainability' ? 'bg-emerald-100 text-emerald-700 border border-emerald-200' :
+                    'bg-gray-100 text-gray-700 border border-gray-200'
+                  }`}>
+                    {project.category.toUpperCase()}
+                  </span>
+                  <span className="text-gray-600">{project.year}</span>
+                  {project.location && (
+                    <div className="flex items-center gap-1 text-gray-600">
+                      <MapPin size={16} />
+                      <span>{project.location}</span>
+                    </div>
                   )}
                 </div>
-              )}
-            </div>
-          </div>
 
-          {/* Main Content */}
-          <div className="space-y-8">
-              {/* Project Narrative */}
-              <div className="space-y-6">
-                {project.narrative.map((paragraph, index) => (
-                  <p key={index} className="text-gray-700 leading-relaxed text-lg first-letter:text-3xl first-letter:font-bold first-letter:text-blue-600 first-letter:float-left first-letter:mr-2 first-letter:mt-0.5">
-                    {paragraph}
-                  </p>
-                ))}
+                <h1 className="text-4xl font-bold text-gray-900">{project.title}</h1>
+                {project.subtitle && (
+                  <p className="text-xl text-blue-600 font-medium">{project.subtitle}</p>
+                )}
+
+                <p className="text-lg text-gray-700 leading-relaxed">
+                  {project.description}
+                </p>
+
+                {project.achievement && (
+                  <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-4">
+                    <div className="flex items-center gap-2">
+                      <Award size={20} className="text-emerald-600 flex-shrink-0" />
+                      <span className="text-emerald-700 font-medium">{project.achievement}</span>
+                    </div>
+                  </div>
+                )}
               </div>
-              {/* Detailed Content - 2 column layout with margin */}
-              <div className="prose prose-gray max-w-none">
-                <div className="columns-1 md:columns-2 gap-8 text-gray-700">
-                  {paragraphs.map((paragraph, index) => {
-                    const totalMedia = project.media?.length || 0;
-                    const imageInterval = 2;
-                    const shouldShowImage = project.media && index > 0 && (index + 1) % imageInterval === 0;
-                    const mediaIndex = Math.floor(index / imageInterval) % totalMedia;
+            </div>
 
-                    return (
-                      <React.Fragment key={index}>
-                        <p className="leading-relaxed text-justify break-inside-avoid mb-4">
-                          {paragraph}
-                        </p>
+            {/* Content */}
+            <div className="pt-8">
+              {/* Project Details - 2 Column Grid at Top */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                <div className="space-y-4">
+                  {project.team && (
+                    <div className="flex items-center gap-3">
+                      <Users className="text-blue-600 flex-shrink-0" size={20} />
+                      <div>
+                        <p className="text-sm text-gray-600">Team Size</p>
+                        <p className="text-gray-900 font-medium">{project.team}</p>
+                      </div>
+                    </div>
+                  )}
+                  {project.impact && (
+                    <div className="flex items-center gap-3">
+                      <Zap className="text-yellow-600 flex-shrink-0" size={20} />
+                      <div>
+                        <p className="text-sm text-gray-600">Impact</p>
+                        <p className="text-gray-900 font-medium">{project.impact}</p>
+                      </div>
+                    </div>
+                  )}
+                  {project.status && (
+                    <div className="flex items-center gap-3">
+                      <div className={`w-3 h-3 rounded-full ${
+                        project.status === 'completed' ? 'bg-emerald-500' :
+                        project.status === 'ongoing' ? 'bg-blue-500' : 'bg-gray-400'
+                      }`} />
+                      <div>
+                        <p className="text-sm text-gray-600">Status</p>
+                        <p className="text-gray-900 font-medium capitalize">{project.status}</p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+                <div className="space-y-4">
+                  {project.duration && (
+                    <div className="flex items-center gap-3">
+                      <Calendar className="text-green-600 flex-shrink-0" size={20} />
+                      <div>
+                        <p className="text-sm text-gray-600">Duration</p>
+                        <p className="text-gray-900 font-medium">{project.duration}</p>
+                      </div>
+                    </div>
+                  )}
+                  <div>
+                    <p className="text-sm text-gray-600 mb-2">Technologies</p>
+                    <div className="flex flex-wrap gap-2">
+                      {project.technologies.map((tech, index) => (
+                        <span key={index} className="px-3 py-1 bg-blue-100 text-blue-700 text-sm rounded-lg">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  {(project.github || project.demo) && (
+                    <div className="flex gap-3 mt-4">
+                      {project.github && (
+                        <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700">
+                          <Github size={16} />
+                          Code
+                        </a>
+                      )}
+                      {project.demo && (
+                        <a href={project.demo} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500">
+                          <ExternalLink size={16} />
+                          Demo
+                        </a>
+                      )}
+                    </div>
+                  )}
+                </div>
+              </div>
 
-                        {/* Insert full-size image after every 2 paragraphs */}
-                        {shouldShowImage && mediaIndex < totalMedia && (
-                          <div className="break-inside-avoid mb-6">
-                            <div className="relative rounded-lg overflow-hidden bg-white border border-gray-200 shadow-sm">
-                              {project.media[mediaIndex].type === 'image' ? (
-                                <img
-                                  src={project.media[mediaIndex].src}
-                                  alt={project.media[mediaIndex].alt}
-                                  className="w-full h-auto object-contain"
-                                  onError={(e) => {
-                                    const target = e.target as HTMLImageElement;
-                                    target.src = '';
-                                    target.style.display = 'none';
-                                    (target.nextSibling as HTMLElement).style.display = 'flex';
-                                  }}
-                                />
-                              ) : (
-                                <video
-                                  src={project.media[mediaIndex].src}
-                                  controls
-                                  className="w-full h-auto object-contain"
-                                />
-                              )}
+              {/* Main Content */}
+              <div className="space-y-8">
+                  {/* Project Narrative */}
+                  <div className="space-y-6">
+                    {project.narrative.map((paragraph, index) => (
+                      <p key={index} className="text-gray-700 leading-relaxed text-lg first-letter:text-3xl first-letter:font-bold first-letter:text-blue-600 first-letter:float-left first-letter:mr-2 first-letter:mt-0.5">
+                        {paragraph}
+                      </p>
+                    ))}
+                  </div>
+                  {/* Detailed Content - 2 column layout with margin */}
+                  <div className="prose prose-gray max-w-none">
+                    <div className="columns-1 md:columns-2 gap-8 text-gray-700">
+                      {paragraphs.map((paragraph, index) => {
+                        const totalMedia = project.media?.length || 0;
+                        const imageInterval = 2;
+                        const shouldShowImage = project.media && index > 0 && (index + 1) % imageInterval === 0;
+                        const mediaIndex = Math.floor(index / imageInterval) % totalMedia;
 
-                              {/* Fallback for broken images */}
-                              <div className="hidden w-full h-48 bg-gradient-to-br from-blue-100 to-purple-100 items-center justify-center">
-                                <div className="text-center">
-                                  <div className="text-2xl mb-1">🖼️</div>
-                                  <p className="text-gray-600 text-sm">{project.title}</p>
+                        return (
+                          <React.Fragment key={index}>
+                            <p className="leading-relaxed text-justify break-inside-avoid mb-4">
+                              {paragraph}
+                            </p>
+
+                            {/* Insert full-size image after every 2 paragraphs */}
+                            {shouldShowImage && mediaIndex < totalMedia && (
+                              <div className="break-inside-avoid mb-6">
+                                <div className="relative rounded-lg overflow-hidden bg-white border border-gray-200 shadow-sm">
+                                  {project.media[mediaIndex].type === 'image' ? (
+                                    <img
+                                      src={project.media[mediaIndex].src}
+                                      alt={project.media[mediaIndex].alt}
+                                      className="w-full h-auto object-contain"
+                                      onError={(e) => {
+                                        const target = e.target as HTMLImageElement;
+                                        target.src = '';
+                                        target.style.display = 'none';
+                                        (target.nextSibling as HTMLElement).style.display = 'flex';
+                                      }}
+                                    />
+                                  ) : (
+                                    <video
+                                      src={project.media[mediaIndex].src}
+                                      controls
+                                      className="w-full h-auto object-contain"
+                                    />
+                                  )}
+
+                                  {/* Fallback for broken images */}
+                                  <div className="hidden w-full h-48 bg-gradient-to-br from-blue-100 to-purple-100 items-center justify-center">
+                                    <div className="text-center">
+                                      <div className="text-2xl mb-1">🖼️</div>
+                                      <p className="text-gray-600 text-sm">{project.title}</p>
+                                    </div>
+                                  </div>
                                 </div>
-                              </div>
-                            </div>
 
-                            {project.media[mediaIndex].caption && (
-                              <p className="text-xs text-gray-500 text-center mt-2 italic">
-                                {project.media[mediaIndex].caption}
-                              </p>
+                                {project.media[mediaIndex].caption && (
+                                  <p className="text-xs text-gray-500 text-center mt-2 italic">
+                                    {project.media[mediaIndex].caption}
+                                  </p>
+                                )}
+                              </div>
                             )}
-                          </div>
-                        )}
-                      </React.Fragment>
-                    );
-                  })}
+                          </React.Fragment>
+                        );
+                      })}
+                    </div>
+                  </div>
                 </div>
-              </div>
             </div>
+
+          </div>
         </div>
       </motion.div>
     </motion.div>
