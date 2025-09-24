@@ -20,7 +20,7 @@ const About = () => {
   return (
     <section
       id="about"
-      className="relative min-h-screen overflow-hidden py-20 lg:py-32"
+      className="relative min-h-screen overflow-hidden pt-24 pb-16 lg:pt-28 lg:pb-20"
       style={{
         background: 'linear-gradient(135deg, #0a0a1a 0%, #1a1a3e 25%, #2d1b69 50%, #1a1a3e 75%, #0a0a1a 100%)',
       }}
@@ -59,14 +59,14 @@ const About = () => {
       <div className="relative z-10 w-full flex flex-col items-center justify-center px-8 lg:px-16">
         {/* Title */}
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-8"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
           <motion.h2
-            className="text-5xl md:text-6xl font-bold mb-6"
+            className="text-5xl md:text-6xl font-bold mb-4"
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -102,7 +102,7 @@ const About = () => {
         </motion.div>
 
         {/* Unified Card-Based Layout */}
-        <div className="w-full max-w-6xl space-y-12 mb-16 lg:mb-20">
+        <div className="w-full max-w-6xl space-y-6 mb-6">
 
           {/* Education & Certifications Grid */}
           <motion.div
@@ -113,8 +113,8 @@ const About = () => {
             transition={{ duration: 0.8 }}
           >
             {/* Education Card */}
-            <div className="bg-slate-900/40 backdrop-blur-sm border border-slate-700/50 rounded-lg p-8 hover:bg-slate-900/60 transition-all duration-300">
-              <div className="flex items-center gap-3 mb-6">
+            <div className="bg-slate-900/40 backdrop-blur-sm border border-slate-700/50 rounded-lg p-8 hover:bg-slate-900/60 transition-all duration-300 text-center">
+              <div className="flex items-center justify-center gap-3 mb-6">
                 <GraduationCap className="w-6 h-6 text-cyan-400" />
                 <h3 className="text-xl font-semibold text-white">Education</h3>
               </div>
@@ -129,10 +129,6 @@ const About = () => {
                   <p className="text-gray-400 text-sm">2023 – 2027</p>
                 </div>
 
-                <div className="inline-block px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 rounded-md">
-                  <p className="text-emerald-400 text-sm font-medium">CGPA: 3.92/4.0</p>
-                </div>
-
                 <p className="text-gray-400 leading-relaxed text-sm">
                   First Class Honours candidate specializing in electronics, robotics, and signal processing.
                 </p>
@@ -140,27 +136,27 @@ const About = () => {
             </div>
 
             {/* Certifications Card */}
-            <div className="bg-slate-900/40 backdrop-blur-sm border border-slate-700/50 rounded-lg p-8 hover:bg-slate-900/60 transition-all duration-300">
-              <div className="flex items-center gap-3 mb-6">
+            <div className="bg-slate-900/40 backdrop-blur-sm border border-slate-700/50 rounded-lg p-8 hover:bg-slate-900/60 transition-all duration-300 text-center">
+              <div className="flex items-center justify-center gap-3 mb-6">
                 <Award className="w-6 h-6 text-cyan-400" />
                 <h3 className="text-xl font-semibold text-white">Certifications</h3>
               </div>
 
               <div className="space-y-4">
                 <div className="space-y-3">
-                  <div className="border-l-2 border-cyan-400/40 pl-4">
+                  <div>
                     <h4 className="text-white font-medium">Mathematics for Machine Learning</h4>
                     <p className="text-gray-400 text-sm">Imperial College London • Dec 2024</p>
                   </div>
 
-                  <div className="border-l-2 border-cyan-400/40 pl-4">
+                  <div>
                     <h4 className="text-white font-medium">Deep Learning Specialization</h4>
                     <p className="text-gray-400 text-sm">DeepLearning.AI • Jun 2024</p>
                   </div>
 
-                  <div className="border-l-2 border-cyan-400/40 pl-4">
+                  <div>
                     <h4 className="text-white font-medium">Embedded Systems & AI</h4>
-                    <p className="text-gray-400 text-sm">UC Irvine • Ongoing</p>
+                    <p className="text-gray-400 text-sm">UC Irvine • Dec 2024</p>
                   </div>
                 </div>
               </div>
@@ -172,13 +168,13 @@ const About = () => {
 
         {/* Leadership Section */}
         <motion.div
-          className="w-full max-w-6xl mb-16"
+          className="w-full max-w-6xl mb-6"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <div className="text-center mb-12">
+          <div className="text-center mb-5">
             <motion.h3
               className="text-3xl lg:text-4xl font-bold mb-3"
               initial={{ opacity: 0, scale: 0.8 }}
@@ -227,7 +223,7 @@ const About = () => {
           transition={{ duration: 0.8 }}
         >
           <motion.h3
-            className="text-2xl lg:text-3xl font-bold mb-8"
+            className="text-2xl lg:text-3xl font-bold mb-6"
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
