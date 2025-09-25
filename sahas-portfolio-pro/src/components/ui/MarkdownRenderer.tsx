@@ -74,32 +74,32 @@ const MarkdownRenderer = ({ content, className = '' }: MarkdownRendererProps) =>
           <td className="px-4 py-3 text-sm text-gray-700 border-r border-gray-200 last:border-r-0">{children}</td>
         ),
         img: ({ src, alt }) => {
-          const isArchitecture = alt?.toLowerCase().includes('architecture') || alt?.toLowerCase().includes('pipeline');
+          const isArchitecture = alt?.toLowerCase().includes('architecture') || alt?.toLowerCase().includes('pipeline') || alt?.toLowerCase().includes('overview');
           if (isArchitecture) {
             return (
-              <div className="break-inside-avoid column-span-all w-full flex flex-col items-center my-8">
+              <>
                 <img
                   src={src}
                   alt={alt || ''}
-                  className="rounded-lg shadow-md w-48 h-auto"
+                  className="rounded-lg shadow-md w-96 h-auto mx-auto block my-8"
                 />
                 {alt && (
-                  <p className="text-xs text-gray-500 text-center mt-2 italic">{alt}</p>
+                  <span className="text-xs text-gray-500 text-center mt-2 italic block">{alt}</span>
                 )}
-              </div>
+              </>
             );
           }
           return (
-            <div className="my-6">
+            <>
               <img
                 src={src}
                 alt={alt || ''}
-                className="rounded-lg shadow-md mx-auto block w-full max-w-md"
+                className="rounded-lg shadow-md mx-auto block w-full max-w-lg my-6"
               />
               {alt && (
-                <p className="text-xs text-gray-500 text-center mt-2 italic">{alt}</p>
+                <span className="text-xs text-gray-500 text-center mt-2 italic block">{alt}</span>
               )}
-            </div>
+            </>
           );
         },
         a: ({ href, children }) => (

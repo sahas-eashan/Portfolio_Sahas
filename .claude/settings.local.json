@@ -24,7 +24,9 @@
       "Bash(npx eslint:*)",
       "Bash(timeout 20 npx tsc --noEmit)",
       "Bash(find:*)",
-      "Bash(pkill:*)"
+      "Bash(pkill:*)",
+      "Bash(grep:*)",
+      "Bash(curl:*)"
     ],
     "deny": [],
     "ask": []
