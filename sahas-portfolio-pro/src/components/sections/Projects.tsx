@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Github, ExternalLink, Award, Eye, ArrowUpRight, Calendar, MapPin, Users, Zap, Play, Pause } from 'lucide-react';
 import Link from 'next/link';
 import { PROJECTS, PROJECT_CATEGORIES } from '@/data/projects';
+import ProjectDetailClient from '@/components/ui/ProjectDetailClient';
 
 const MediaGallery = ({ media, projectTitle }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -599,10 +600,17 @@ const Projects = () => {
       {/* Project Detail Modal */}
       <AnimatePresence>
         {selectedProject && (
-          <ProjectDetailView
-            project={selectedProject}
-            onClose={handleCloseDetails}
-          />
+          <motion.div
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 overflow-y-auto"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={handleCloseDetails}
+          >
+            <div onClick={(e) => e.stopPropagation()}>
+              <ProjectDetailClient project={selectedProject} onClose={handleCloseDetails} />
+            </div>
+          </motion.div>
         )}
       </AnimatePresence>
     </>

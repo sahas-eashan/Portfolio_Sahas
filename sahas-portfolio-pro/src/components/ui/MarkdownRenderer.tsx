@@ -1,6 +1,7 @@
 'use client';
 
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 interface MarkdownRendererProps {
   content: string;
@@ -11,6 +12,7 @@ const MarkdownRenderer = ({ content, className = '' }: MarkdownRendererProps) =>
   return (
     <div className={`max-w-none ${className}`}>
       <ReactMarkdown
+        remarkPlugins={[remarkGfm]}
         components={{
         h1: ({ children }) => (
           <h1 className="text-3xl font-bold text-gray-900 mb-6 mt-8 border-b border-gray-200 pb-3 leading-tight">{children}</h1>
@@ -30,11 +32,14 @@ const MarkdownRenderer = ({ content, className = '' }: MarkdownRendererProps) =>
         ul: ({ children }) => (
           <ul className="list-disc list-inside text-gray-700 mb-4 space-y-2 ml-4">{children}</ul>
         ),
+        ol: ({ children }) => (
+          <ol className="list-decimal list-inside text-gray-700 mb-4 space-y-2 ml-4">{children}</ol>
+        ),
         li: ({ children }) => (
           <li className="text-gray-700 leading-relaxed">{children}</li>
         ),
         strong: ({ children }) => (
-          <strong className="text-gray-900 font-semibold">{children}</strong>
+          <strong className="font-extrabold text-gray-900" style={{ fontWeight: 700 }}>{children}</strong>
         ),
         em: ({ children }) => (
           <em className="text-gray-700 italic">{children}</em>
@@ -48,6 +53,55 @@ const MarkdownRenderer = ({ content, className = '' }: MarkdownRendererProps) =>
         blockquote: ({ children }) => (
           <blockquote className="border-l-4 border-blue-600 pl-6 py-2 bg-blue-50 italic text-gray-700 mb-4 rounded-r">{children}</blockquote>
         ),
+        table: ({ children }) => (
+          <div className="overflow-x-auto mb-6">
+            <table className="min-w-full divide-y divide-gray-300 border border-gray-300 rounded-lg">{children}</table>
+          </div>
+        ),
+        thead: ({ children }) => (
+          <thead className="bg-gray-100">{children}</thead>
+        ),
+        tbody: ({ children }) => (
+          <tbody className="divide-y divide-gray-200 bg-white">{children}</tbody>
+        ),
+        tr: ({ children }) => (
+          <tr className="hover:bg-gray-50 transition-colors">{children}</tr>
+        ),
+        th: ({ children }) => (
+          <th className="px-4 py-3 text-left text-sm font-semibold text-gray-900 border-r border-gray-300 last:border-r-0">{children}</th>
+        ),
+        td: ({ children }) => (
+          <td className="px-4 py-3 text-sm text-gray-700 border-r border-gray-200 last:border-r-0">{children}</td>
+        ),
+        img: ({ src, alt }) => {
+          const isArchitecture = alt?.toLowerCase().includes('architecture') || alt?.toLowerCase().includes('pipeline');
+          if (isArchitecture) {
+            return (
+              <div className="break-inside-avoid column-span-all w-full flex flex-col items-center my-8">
+                <img
+                  src={src}
+                  alt={alt || ''}
+                  className="rounded-lg shadow-md w-48 h-auto"
+                />
+                {alt && (
+                  <p className="text-xs text-gray-500 text-center mt-2 italic">{alt}</p>
+                )}
+              </div>
+            );
+          }
+          return (
+            <div className="my-6">
+              <img
+                src={src}
+                alt={alt || ''}
+                className="rounded-lg shadow-md mx-auto block w-full max-w-md"
+              />
+              {alt && (
+                <p className="text-xs text-gray-500 text-center mt-2 italic">{alt}</p>
+              )}
+            </div>
+          );
+        },
         a: ({ href, children }) => (
           <a
             href={href}

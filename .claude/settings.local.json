@@ -19,8 +19,12 @@
       "Bash(timeout 60 npx next build)",
       "mcp__ide__getDiagnostics",
       "Bash(cat:*)",
-      "Bash(lsof:*)"
-
+      "Bash(lsof:*)",
+      "Bash(timeout 30 npx tsc --noEmit)",
+      "Bash(npx eslint:*)",
+      "Bash(timeout 20 npx tsc --noEmit)",
+      "Bash(find:*)",
+      "Bash(pkill:*)"
     ],
     "deny": [],
     "ask": []
